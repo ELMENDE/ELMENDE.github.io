@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Juan Ignacio Méndez</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #080811;
+      color: #e8e8f0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      overflow: hidden;
+    }
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: .45;
+      pointer-events: none;
+    }
+    .orb-1 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(34,211,238,.4) 0%, transparent 70%); top: -100px; left: -100px; }
+    .orb-2 { width: 350px; height: 350px; background: radial-gradient(circle, rgba(167,139,250,.4) 0%, transparent 70%); bottom: -80px; right: -80px; }
+    .content { position: relative; z-index: 1; max-width: 480px; }
+    .code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(5rem, 18vw, 8rem);
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, #22d3ee, #a78bfa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+    h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; }
+    p  { color: #7070a0; font-size: .95rem; line-height: 1.6; margin-bottom: 32px; }
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 99px;
+      background: linear-gradient(135deg, #22d3ee, #a78bfa);
+      color: #080811;
+      font-weight: 700;
+      font-size: .9rem;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    a:hover { transform: translateY(-2px); box-shadow: 0 0 32px rgba(34,211,238,.35); }
+  </style>
+</head>
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="content">
+    <div class="code">404</div>
+    <h1>Página no encontrada</h1>
+    <p>La URL que buscás no existe. Quizás fue movida o el link está roto.</p>
+    <a href="/">← Volver al inicio</a>
+  </div>
+</body>
+</html>
