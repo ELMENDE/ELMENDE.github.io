@@ -8,8 +8,10 @@ const T = {
     'nav.education':   'Educación',
     'nav.contact':     'Contacto',
 
+    'hero.available':    'Disponible para trabajar',
     'hero.greeting':     'Hola, soy',
     'hero.subtitle':     'Construyo software que resuelve problemas reales.',
+    'hero.cta_cv':       'Descargar CV',
     'hero.cta_projects': 'Ver proyectos',
     'hero.cta_contact':  'Contacto',
 
@@ -33,9 +35,6 @@ const T = {
     'experience.job1_b1':    'Desarrollo de parsers para extracción automática de datos de facturas de clientes de alto perfil como Nike, Microsoft y Meta.',
     'experience.job1_b2':    'Gestión y seguimiento de incidentes mediante sistema de ticketing.',
     'experience.job1_b3':    'Automatización de procesos de lectura y procesamiento de documentos para reducir trabajo manual y minimizar errores.',
-    'experience.job2_title': 'Referente de Cocina',
-    'experience.job2_date':  'Feb 2024 – Oct 2025',
-    'experience.job2_b1':    'Lideré equipo en entorno de alta demanda, gestionando incorporación de personal, resolución de conflictos y mejora de procesos operativos.',
 
     'projects.title':   'Proyectos',
     'projects.private': 'Privado',
@@ -62,8 +61,10 @@ const T = {
     'nav.education':   'Education',
     'nav.contact':     'Contact',
 
+    'hero.available':    'Open to work',
     'hero.greeting':     "Hi, I'm",
     'hero.subtitle':     'I build software that solves real problems.',
+    'hero.cta_cv':       'Download CV',
     'hero.cta_projects': 'View projects',
     'hero.cta_contact':  'Contact',
 
@@ -87,9 +88,6 @@ const T = {
     'experience.job1_b1':    'Built parsers for automated data extraction from monthly invoices of high-profile clients including Nike, Microsoft, and Meta.',
     'experience.job1_b2':    'Managed incident tracking and resolution via a ticketing system.',
     'experience.job1_b3':    'Automated document reading and processing workflows to reduce manual effort and minimize errors.',
-    'experience.job2_title': 'Kitchen Lead',
-    'experience.job2_date':  'Feb 2024 – Oct 2025',
-    'experience.job2_b1':    'Led a team in a high-demand environment, managing onboarding, conflict resolution, and operational process improvements.',
 
     'projects.title':   'Projects',
     'projects.private': 'Private',
@@ -237,6 +235,37 @@ document.querySelectorAll('.skills-grid, .projects-grid, .timeline, .contact-lin
   });
   staggerObserver.observe(el);
 });
+
+/* ─── ANIMATED COUNTERS ────────────────────────────────────── */
+function animateCounter(el, target, duration = 1200) {
+  const isSymbol = isNaN(target);
+  if (isSymbol) return;
+  let start = null;
+  const step = (ts) => {
+    if (!start) start = ts;
+    const progress = Math.min((ts - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(eased * target) + '+';
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = target + '+';
+  };
+  requestAnimationFrame(step);
+}
+
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.querySelectorAll('.stat-number').forEach(el => {
+      const raw = el.textContent.replace('+', '').trim();
+      const num = parseInt(raw);
+      if (!isNaN(num)) animateCounter(el, num);
+    });
+    statsObserver.unobserve(entry.target);
+  });
+}, { threshold: 0.5 });
+
+const statsEl = document.querySelector('.about-stats');
+if (statsEl) statsObserver.observe(statsEl);
 
 /* ─── INIT ─────────────────────────────────────────────────── */
 applyLang('es');
