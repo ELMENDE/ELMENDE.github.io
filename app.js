@@ -236,18 +236,21 @@ function highlightNav(scroll) {
 /* ─── CUSTOM CURSOR ────────────────────────────────────────── */
 const dot  = $('#cursor-dot');
 const ring = $('#cursor-ring');
-if (dot && ring && window.matchMedia('(pointer: fine)').matches) {
+if (dot && ring) {
+  gsap.set([dot, ring], { xPercent: -50, yPercent: -50 });
+
   let mx = window.innerWidth / 2, my = window.innerHeight / 2;
   let rx = mx, ry = my;
 
+  const quickDotX = gsap.quickTo(dot, 'x', { duration: 0.15, ease: 'power3' });
+  const quickDotY = gsap.quickTo(dot, 'y', { duration: 0.15, ease: 'power3' });
+  const quickRingX = gsap.quickTo(ring, 'x', { duration: 0.5, ease: 'power3' });
+  const quickRingY = gsap.quickTo(ring, 'y', { duration: 0.5, ease: 'power3' });
+
   window.addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
-    gsap.set(dot, { x: mx, y: my });
-  });
-  gsap.ticker.add(() => {
-    rx += (mx - rx) * 0.15;
-    ry += (my - ry) * 0.15;
-    gsap.set(ring, { x: rx, y: ry });
+    quickDotX(mx); quickDotY(my);
+    quickRingX(mx); quickRingY(my);
   });
 
   $$('a, button, .card, .tag, .project-card').forEach(el => {
