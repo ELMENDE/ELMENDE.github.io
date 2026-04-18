@@ -107,6 +107,49 @@ const T = {
   },
 };
 
+/* ─── HELPERS ──────────────────────────────────────────────── */
+function $ (sel, root = document)  { return root.querySelector(sel); }
+function $$ (sel, root = document) { return Array.from(root.querySelectorAll(sel)); }
+
+/* Split hero name into chars preserving the accent span */
+function splitHeroName() {
+  const el = $('.hero-name');
+  if (!el) return [];
+  const parts = [];
+  el.childNodes.forEach(node => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      parts.push({ text: node.textContent, accent: false });
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      parts.push({ text: node.textContent, accent: node.classList.contains('accent') });
+    }
+  });
+  el.innerHTML = parts.map(p =>
+    p.text.split('').map(c => {
+      const disp = c === ' ' ? '&nbsp;' : c;
+      const cls  = p.accent ? 'char accent' : 'char';
+      return `<span class="${cls}">${disp}</span>`;
+    }).join('')
+  ).join('');
+  return $$('.char', el);
+}
+
+/* ─── I18N ─────────────────────────────────────────────────── */
+let currentLang = 'es';
+function applyLang(lang) {
+  $$('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang][key] !== undefined) el.textContent = T[lang][key];
+  });
+  document.documentElement.lang = lang;
+  const btn = $('#langToggle');
+  if (btn) btn.textContent = lang === 'es' ? 'EN' : 'ES';
+  restartTyping(lang);
+}
+$('#langToggle')?.addEventListener('click', () => {
+  currentLang = currentLang === 'es' ? 'en' : 'es';
+  applyLang(currentLang);
+});
+
 /* ─── TYPING EFFECT ────────────────────────────────────────── */
 const typedStrings = {
   es: ['RPA Developer', 'Builder de productos', 'Apasionado por la IA', 'Automatizador'],
@@ -115,7 +158,7 @@ const typedStrings = {
 let typingState = { idx: 0, charIdx: 0, deleting: false, timeout: null };
 
 function typeLoop(lang) {
-  const el = document.getElementById('typedText');
+  const el = $('#typedText');
   if (!el) return;
   const strings = typedStrings[lang];
   const current = strings[typingState.idx % strings.length];
@@ -138,199 +181,162 @@ function typeLoop(lang) {
 function restartTyping(lang) {
   clearTimeout(typingState.timeout);
   typingState = { idx: 0, charIdx: 0, deleting: false, timeout: null };
-  const el = document.getElementById('typedText');
+  const el = $('#typedText');
   if (el) el.textContent = '';
   setTimeout(() => typeLoop(lang), 400);
 }
 
-/* ─── I18N ─────────────────────────────────────────────────── */
-let currentLang = 'es';
-function applyLang(lang) {
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (T[lang][key] !== undefined) el.textContent = T[lang][key];
-  });
-  document.documentElement.lang = lang;
-  const btn = document.getElementById('langToggle');
-  if (btn) btn.textContent = lang === 'es' ? 'EN' : 'ES';
-  restartTyping(lang);
-}
-document.getElementById('langToggle').addEventListener('click', () => {
-  currentLang = currentLang === 'es' ? 'en' : 'es';
-  applyLang(currentLang);
-});
-
 /* ─── LENIS SMOOTH SCROLL ──────────────────────────────────── */
 const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add((time) => lenis.raf(time * 1000));
+lenis.on('scroll', () => ScrollTrigger.update());
+gsap.ticker.add(time => lenis.raf(time * 1000));
 gsap.ticker.lagSmoothing(0);
 
-/* ─── NAVBAR ───────────────────────────────────────────────── */
-const navbar = document.getElementById('navbar');
-lenis.on('scroll', ({ scroll }) => {
-  navbar.classList.toggle('scrolled', scroll > 20);
-  highlightNav();
+/* Anchor link smooth scroll */
+$$('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (href && href.length > 1) {
+      e.preventDefault();
+      lenis.scrollTo(href, { offset: -70 });
+    }
+  });
 });
 
-const menuToggle = document.getElementById('menuToggle');
-const navLinks   = document.getElementById('navLinks');
-menuToggle.addEventListener('click', () => {
-  menuToggle.classList.toggle('open');
-  navLinks.classList.toggle('open');
+/* ─── NAVBAR ───────────────────────────────────────────────── */
+const navbar    = $('#navbar');
+const menuToggle = $('#menuToggle');
+const navLinks   = $('#navLinks');
+
+lenis.on('scroll', ({ scroll }) => {
+  if (navbar) navbar.classList.toggle('scrolled', scroll > 20);
+  highlightNav(scroll);
 });
-navLinks.querySelectorAll('a').forEach(a => {
+
+menuToggle?.addEventListener('click', () => {
+  menuToggle.classList.toggle('open');
+  navLinks?.classList.toggle('open');
+});
+navLinks?.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', () => {
-    menuToggle.classList.remove('open');
+    menuToggle?.classList.remove('open');
     navLinks.classList.remove('open');
   });
 });
-function highlightNav() {
-  const sections = document.querySelectorAll('section[id]');
+
+function highlightNav(scroll) {
+  const sections = $$('section[id]');
   let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
-  document.querySelectorAll('.nav-links a').forEach(a => {
+  sections.forEach(s => { if (scroll >= s.offsetTop - 150) current = s.id; });
+  $$('.nav-links a').forEach(a => {
     a.classList.toggle('active', a.getAttribute('href') === '#' + current);
   });
 }
 
 /* ─── CUSTOM CURSOR ────────────────────────────────────────── */
-const dot  = document.getElementById('cursor-dot');
-const ring = document.getElementById('cursor-ring');
-let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
-let ringX  = mouseX, ringY = mouseY;
+const dot  = $('#cursor-dot');
+const ring = $('#cursor-ring');
+if (dot && ring && window.matchMedia('(pointer: fine)').matches) {
+  let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+  let rx = mx, ry = my;
 
-window.addEventListener('mousemove', e => {
-  mouseX = e.clientX; mouseY = e.clientY;
-  gsap.to(dot, { x: mouseX, y: mouseY, duration: 0.08, ease: 'none' });
-});
+  window.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    gsap.set(dot, { x: mx, y: my });
+  });
+  gsap.ticker.add(() => {
+    rx += (mx - rx) * 0.15;
+    ry += (my - ry) * 0.15;
+    gsap.set(ring, { x: rx, y: ry });
+  });
 
-gsap.ticker.add(() => {
-  ringX += (mouseX - ringX) * 0.12;
-  ringY += (mouseY - ringY) * 0.12;
-  gsap.set(ring, { x: ringX, y: ringY });
-});
-
-document.querySelectorAll('a, button, .card, .tag, .project-card').forEach(el => {
-  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-});
+  $$('a, button, .card, .tag, .project-card').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+}
 
 /* ─── MOUSE PARALLAX ON ORBS ───────────────────────────────── */
-const orbs = document.querySelectorAll('.orb');
+const orbs = $$('.orb');
 window.addEventListener('mousemove', e => {
   const cx = (e.clientX / window.innerWidth  - 0.5) * 2;
   const cy = (e.clientY / window.innerHeight - 0.5) * 2;
   orbs.forEach((orb, i) => {
-    const factor = (i + 1) * 18;
-    gsap.to(orb, { x: cx * factor, y: cy * factor, duration: 1.8, ease: 'power2.out' });
+    const f = (i + 1) * 15;
+    gsap.to(orb, { x: cx * f, y: cy * f, duration: 1.8, ease: 'power2.out' });
   });
 });
 
-/* ─── SPLIT TEXT HELPER ────────────────────────────────────── */
-function splitIntoChars(el) {
-  const text = el.textContent;
-  el.innerHTML = text.split('').map(c =>
-    c === ' '
-      ? '<span class="char" style="display:inline-block">&nbsp;</span>'
-      : `<span class="char" style="display:inline-block">${c}</span>`
-  ).join('');
-  return el.querySelectorAll('.char');
-}
-
-/* ─── GSAP HERO ANIMATION ──────────────────────────────────── */
+/* ─── GSAP REGISTER ────────────────────────────────────────── */
 gsap.registerPlugin(ScrollTrigger);
 
-const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+/* ─── HERO ANIMATION ───────────────────────────────────────── */
+window.addEventListener('load', () => {
+  const chars = splitHeroName();
+  gsap.set(chars, { yPercent: 110, opacity: 0, rotateX: -60 });
 
-const nameEl  = document.querySelector('.hero-name');
-const nameText = nameEl ? nameEl.innerHTML : '';
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  tl.from('.available-badge',    { opacity: 0, y: 20, duration: .6 })
+    .from('.hero-greeting',      { opacity: 0, y: 20, duration: .5 }, '-=.3')
+    .to(chars, {
+      yPercent: 0, opacity: 1, rotateX: 0,
+      stagger: 0.035, duration: .8, ease: 'back.out(1.7)'
+    }, '-=.2')
+    .from('.hero-title-wrapper', { opacity: 0, y: 20, duration: .5 }, '-=.3')
+    .from('.hero-subtitle',      { opacity: 0, y: 20, duration: .5 }, '-=.3')
+    .from('.hero-cta > *',       { opacity: 0, y: 24, stagger: .1, duration: .5 }, '-=.2')
+    .from('.hero-socials .social-link', {
+      opacity: 0, scale: 0, stagger: .08, duration: .4, ease: 'back.out(2)'
+    }, '-=.2')
+    .from('.scroll-indicator', { opacity: 0, duration: .6 }, '-=.1');
 
-heroTl
-  .from('.available-badge',    { opacity: 0, y: 20, duration: .6 })
-  .from('.hero-greeting',      { opacity: 0, y: 20, duration: .5 }, '-=.3')
-  .add(() => {
-    if (!nameEl) return;
-    const accentSpan = nameEl.querySelector('.accent');
-    const accentText = accentSpan ? accentSpan.textContent : '';
-    const fullText   = nameEl.textContent;
-    nameEl.innerHTML = fullText.split('').map((c, i) => {
-      const isAccent = accentText && i >= fullText.indexOf(accentText);
-      return c === ' '
-        ? '<span class="char" style="display:inline-block">&nbsp;</span>'
-        : `<span class="char" style="display:inline-block;${isAccent ? 'background:linear-gradient(135deg,#22d3ee,#a78bfa);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent' : ''}">${c}</span>`;
-    }).join('');
-    gsap.from(nameEl.querySelectorAll('.char'), {
-      opacity: 0, y: 60, rotateX: -90,
-      stagger: 0.04, duration: .7, ease: 'back.out(2)'
-    });
-  }, '-=.1')
-  .from('.hero-title-wrapper', { opacity: 0, y: 20, duration: .5 }, '-=.2')
-  .from('.hero-subtitle',      { opacity: 0, y: 20, duration: .5 }, '-=.3')
-  .from('.hero-cta .btn',      { opacity: 0, y: 24, stagger: .1, duration: .5 }, '-=.2')
-  .from('.hero-socials .social-link', { opacity: 0, scale: 0, stagger: .08, duration: .4, ease: 'back.out(2)' }, '-=.2')
-  .from('.scroll-indicator',   { opacity: 0, duration: .6 }, '-=.1');
+  ScrollTrigger.refresh();
+});
 
-/* ─── GSAP SCROLL ANIMATIONS ───────────────────────────────── */
-function scrollReveal(selector, vars = {}) {
-  gsap.from(selector, {
-    scrollTrigger: { trigger: selector, start: 'top 85%', toggleActions: 'play none none none' },
-    opacity: 0, y: 50, duration: .8, ease: 'power3.out',
-    ...vars
-  });
-}
-
-// Section titles
-document.querySelectorAll('.section-title').forEach(el => {
-  const chars = splitIntoChars(el);
-  gsap.from(chars, {
+/* ─── SECTION TITLES — char reveal ─────────────────────────── */
+$$('.section-title').forEach(el => {
+  const text = el.textContent;
+  el.innerHTML = text.split('').map(c =>
+    c === ' ' ? '<span class="char">&nbsp;</span>' : `<span class="char">${c}</span>`
+  ).join('');
+  gsap.from(el.querySelectorAll('.char'), {
     scrollTrigger: { trigger: el, start: 'top 88%' },
     opacity: 0, y: 30, rotateX: -60,
     stagger: 0.025, duration: .6, ease: 'back.out(1.5)'
   });
-  // Animate underline
-  gsap.from(el, {
-    scrollTrigger: { trigger: el, start: 'top 88%' },
-    '--underline-w': '0px',
-    duration: .8, ease: 'power2.out', delay: .3
-  });
 });
 
-// About section
+/* ─── ABOUT ────────────────────────────────────────────────── */
 gsap.from('.about-text p', {
-  scrollTrigger: { trigger: '#about', start: 'top 80%' },
+  scrollTrigger: { trigger: '#about', start: 'top 78%' },
   opacity: 0, x: -40, stagger: .15, duration: .7, ease: 'power3.out'
 });
 gsap.from('.info-item', {
   scrollTrigger: { trigger: '.about-info', start: 'top 85%' },
-  opacity: 0, x: -30, stagger: .1, duration: .6, ease: 'power2.out'
+  opacity: 0, x: -30, stagger: .1, duration: .5, ease: 'power2.out'
 });
 gsap.from('.about-avatar', {
   scrollTrigger: { trigger: '.about-card-wrapper', start: 'top 80%' },
-  opacity: 0, scale: .5, rotation: -15, duration: .9, ease: 'back.out(2)'
+  opacity: 0, scale: .4, rotation: -15, duration: .9, ease: 'back.out(1.8)'
 });
 gsap.from('.stat', {
   scrollTrigger: { trigger: '.about-stats', start: 'top 85%' },
-  opacity: 0, y: 30, stagger: .12, duration: .6, ease: 'back.out(1.5)'
+  opacity: 0, y: 30, stagger: .1, duration: .5, ease: 'back.out(1.5)'
 });
 
-// Skills cards
+/* ─── SKILLS ───────────────────────────────────────────────── */
 gsap.from('.skill-category', {
   scrollTrigger: { trigger: '#skills', start: 'top 75%' },
-  opacity: 0, y: 50, scale: .9, stagger: .1, duration: .7, ease: 'back.out(1.5)'
+  opacity: 0, y: 50, scale: .9, stagger: .08, duration: .6, ease: 'back.out(1.4)'
 });
-document.querySelectorAll('.skill-category').forEach(cat => {
+$$('.skill-category').forEach(cat => {
   gsap.from(cat.querySelectorAll('.tag'), {
     scrollTrigger: { trigger: cat, start: 'top 85%' },
-    opacity: 0, scale: 0, stagger: .05, duration: .4, ease: 'back.out(2)', delay: .2
+    opacity: 0, scale: 0, stagger: .04, duration: .35, ease: 'back.out(2)', delay: .25
   });
 });
 
-// Timeline
-gsap.from('.timeline::before', {
-  scrollTrigger: { trigger: '.timeline', start: 'top 80%', end: 'bottom 80%', scrub: 1 },
-  scaleY: 0, transformOrigin: 'top center'
-});
+/* ─── TIMELINE ─────────────────────────────────────────────── */
 gsap.from('.timeline-dot', {
   scrollTrigger: { trigger: '.timeline', start: 'top 80%' },
   scale: 0, stagger: .2, duration: .5, ease: 'back.out(2)'
@@ -344,13 +350,13 @@ gsap.from('.job-bullets li', {
   opacity: 0, x: 20, stagger: .08, duration: .5, ease: 'power2.out', delay: .3
 });
 
-// Projects
+/* ─── PROJECTS ─────────────────────────────────────────────── */
 gsap.from('.project-card', {
   scrollTrigger: { trigger: '#projects', start: 'top 75%' },
-  opacity: 0, y: 60, rotateY: 8, stagger: .15, duration: .8, ease: 'power3.out'
+  opacity: 0, y: 60, rotateY: 6, stagger: .12, duration: .8, ease: 'power3.out'
 });
 
-// Education
+/* ─── EDUCATION ────────────────────────────────────────────── */
 gsap.from('.education-card', {
   scrollTrigger: { trigger: '#education', start: 'top 80%' },
   opacity: 0, y: 40, duration: .8, ease: 'power3.out'
@@ -360,7 +366,7 @@ gsap.from('.edu-icon', {
   scale: 0, rotation: -30, duration: .7, ease: 'back.out(2)', delay: .2
 });
 
-// Contact
+/* ─── CONTACT ──────────────────────────────────────────────── */
 gsap.from('.contact-sub', {
   scrollTrigger: { trigger: '#contact', start: 'top 85%' },
   opacity: 0, y: 20, duration: .6, ease: 'power2.out'
@@ -371,11 +377,11 @@ gsap.from('.contact-card', {
 });
 
 /* ─── MAGNETIC BUTTONS ─────────────────────────────────────── */
-document.querySelectorAll('.btn').forEach(btn => {
+$$('.btn').forEach(btn => {
   btn.addEventListener('mousemove', e => {
     const r = btn.getBoundingClientRect();
-    const x = (e.clientX - r.left - r.width  / 2) * 0.35;
-    const y = (e.clientY - r.top  - r.height / 2) * 0.35;
+    const x = (e.clientX - r.left - r.width  / 2) * 0.3;
+    const y = (e.clientY - r.top  - r.height / 2) * 0.3;
     gsap.to(btn, { x, y, duration: .3, ease: 'power2.out' });
   });
   btn.addEventListener('mouseleave', () => {
@@ -383,38 +389,40 @@ document.querySelectorAll('.btn').forEach(btn => {
   });
 });
 
-/* ─── ANIMATED COUNTERS ────────────────────────────────────── */
-const statsObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    entry.target.querySelectorAll('.stat-number').forEach(el => {
-      const num = parseInt(el.textContent);
-      if (isNaN(num)) return;
-      gsap.fromTo({ val: 0 }, { val: num },
-        { val: num, duration: 1.4, ease: 'power2.out',
-          onUpdate: function() { el.textContent = Math.floor(this.targets()[0].val) + '+'; },
-          onComplete: () => { el.textContent = num + '+'; }
-        }
-      );
-    });
-    statsObserver.unobserve(entry.target);
-  });
-}, { threshold: .5 });
-
-const statsEl = document.querySelector('.about-stats');
-if (statsEl) statsObserver.observe(statsEl);
-
 /* ─── CARD TILT ON HOVER ───────────────────────────────────── */
-document.querySelectorAll('.project-card').forEach(card => {
+$$('.project-card').forEach(card => {
   card.addEventListener('mousemove', e => {
     const r = card.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width  - .5;
     const y = (e.clientY - r.top)  / r.height - .5;
-    gsap.to(card, { rotateY: x * 10, rotateX: -y * 10, duration: .3, ease: 'power2.out', transformPerspective: 800 });
+    gsap.to(card, {
+      rotateY: x * 8, rotateX: -y * 8,
+      duration: .3, ease: 'power2.out',
+      transformPerspective: 900, transformOrigin: 'center center'
+    });
   });
   card.addEventListener('mouseleave', () => {
     gsap.to(card, { rotateY: 0, rotateX: 0, duration: .6, ease: 'elastic.out(1, .5)' });
   });
+});
+
+/* ─── ANIMATED COUNTERS ────────────────────────────────────── */
+ScrollTrigger.create({
+  trigger: '.about-stats',
+  start: 'top 75%',
+  once: true,
+  onEnter: () => {
+    $$('.stat-number').forEach(el => {
+      const num = parseInt(el.textContent);
+      if (isNaN(num)) return;
+      const obj = { val: 0 };
+      gsap.to(obj, {
+        val: num, duration: 1.4, ease: 'power2.out',
+        onUpdate: () => { el.textContent = Math.floor(obj.val) + '+'; },
+        onComplete: () => { el.textContent = num + '+'; }
+      });
+    });
+  }
 });
 
 /* ─── INIT ─────────────────────────────────────────────────── */

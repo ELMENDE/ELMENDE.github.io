@@ -19,7 +19,7 @@
   --nav-h:     64px;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; } /* handled by Lenis */
 
 body {
   font-family: 'Inter', sans-serif;
@@ -486,7 +486,15 @@ body.cursor-hover #cursor-ring {
 }
 
 /* ─── REVEAL — handled by GSAP ─────────────────────────────── */
-.reveal { opacity: 0; }
+.reveal { /* GSAP targets children individually */ }
+
+/* Hero name char accent */
+.hero-name .char.accent {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 /* ─── ABOUT ────────────────────────────────────────────────── */
 .about-grid {
