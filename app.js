@@ -16,7 +16,7 @@ const T = {
     'hero.cta_contact':  'Contacto',
 
     'about.title':         'Sobre mí',
-    'about.bio1':          'Desarrollador en formación con experiencia práctica en automatización de datos. Trabajo en Asignet desarrollando parsers para clientes como Nike, Microsoft y Meta, y estudio Analista en Tecnologías de la Información en Universidad ORT Uruguay.',
+    'about.bio1':          'Desarrollador en formación con experiencia práctica en automatización de datos. Trabajo en Asignet desarrollando pipelines RPA para clientes como Nike, Microsoft y Meta, y estudio Analista en Tecnologías de la Información en Universidad ORT Uruguay.',
     'about.bio2':          'Me apasiona construir productos que combinen buena ingeniería con inteligencia artificial. Cuando no estoy programando, me encontrás jugando al volleyball o en la bici.',
     'about.lbl_location':  'Ubicación',
     'about.lbl_languages': 'Idiomas',
@@ -29,7 +29,7 @@ const T = {
 
     'skills.title': 'Habilidades',
 
-    'experience.title':    'Experiencia',
+    'experience.title':      'Experiencia',
     'experience.job1_title': 'RPA / Parser Developer',
     'experience.job1_date':  'Oct 2025 – Presente',
     'experience.job1_b1':    'Construyo pipelines de automatización end-to-end: scripts RPA que descargan facturas automáticamente desde los portales de clientes como Nike, Microsoft y Meta, y parsers que extraen y estructuran los datos sin intervención humana.',
@@ -69,7 +69,7 @@ const T = {
     'hero.cta_contact':  'Contact',
 
     'about.title':         'About me',
-    'about.bio1':          'Developer in training with hands-on experience in data automation. I work at Asignet building parsers for high-profile clients like Nike, Microsoft, and Meta, and study Information Technology Analysis at Universidad ORT Uruguay.',
+    'about.bio1':          'Developer in training with hands-on experience in data automation. I work at Asignet building RPA pipelines for high-profile clients like Nike, Microsoft, and Meta, and study Information Technology Analysis at Universidad ORT Uruguay.',
     'about.bio2':          "I'm passionate about building products that combine solid engineering with artificial intelligence. When I'm not coding, you'll find me playing volleyball or cycling.",
     'about.lbl_location':  'Location',
     'about.lbl_languages': 'Languages',
@@ -82,7 +82,7 @@ const T = {
 
     'skills.title': 'Skills',
 
-    'experience.title':    'Experience',
+    'experience.title':      'Experience',
     'experience.job1_title': 'RPA / Parser Developer',
     'experience.job1_date':  'Oct 2025 – Present',
     'experience.job1_b1':    'Building end-to-end automation pipelines: RPA scripts that automatically download invoices from client portals (Nike, Microsoft, Meta) and parsers that extract and structure the data with zero human intervention.',
@@ -109,10 +109,9 @@ const T = {
 
 /* ─── TYPING EFFECT ────────────────────────────────────────── */
 const typedStrings = {
-  es: ['Developer', 'Builder de productos', 'Apasionado por la IA', 'RPA Developer'],
-  en: ['Developer', 'Product Builder', 'AI Enthusiast', 'RPA Developer'],
+  es: ['RPA Developer', 'Builder de productos', 'Apasionado por la IA', 'Automatizador'],
+  en: ['RPA Developer', 'Product Builder', 'AI Enthusiast', 'Automation Nerd'],
 };
-
 let typingState = { idx: 0, charIdx: 0, deleting: false, timeout: null };
 
 function typeLoop(lang) {
@@ -120,38 +119,32 @@ function typeLoop(lang) {
   if (!el) return;
   const strings = typedStrings[lang];
   const current = strings[typingState.idx % strings.length];
-
   if (typingState.deleting) {
     el.textContent = current.slice(0, typingState.charIdx - 1);
     typingState.charIdx--;
-    if (typingState.charIdx === 0) {
-      typingState.deleting = false;
-      typingState.idx++;
-    }
-    typingState.timeout = setTimeout(() => typeLoop(lang), 60);
+    if (typingState.charIdx === 0) { typingState.deleting = false; typingState.idx++; }
+    typingState.timeout = setTimeout(() => typeLoop(lang), 55);
   } else {
     el.textContent = current.slice(0, typingState.charIdx + 1);
     typingState.charIdx++;
     if (typingState.charIdx === current.length) {
       typingState.deleting = true;
-      typingState.timeout = setTimeout(() => typeLoop(lang), 2000);
+      typingState.timeout = setTimeout(() => typeLoop(lang), 2200);
     } else {
-      typingState.timeout = setTimeout(() => typeLoop(lang), 80);
+      typingState.timeout = setTimeout(() => typeLoop(lang), 75);
     }
   }
 }
-
 function restartTyping(lang) {
   clearTimeout(typingState.timeout);
   typingState = { idx: 0, charIdx: 0, deleting: false, timeout: null };
   const el = document.getElementById('typedText');
   if (el) el.textContent = '';
-  setTimeout(() => typeLoop(lang), 300);
+  setTimeout(() => typeLoop(lang), 400);
 }
 
 /* ─── I18N ─────────────────────────────────────────────────── */
 let currentLang = 'es';
-
 function applyLang(lang) {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
@@ -162,18 +155,23 @@ function applyLang(lang) {
   if (btn) btn.textContent = lang === 'es' ? 'EN' : 'ES';
   restartTyping(lang);
 }
-
 document.getElementById('langToggle').addEventListener('click', () => {
   currentLang = currentLang === 'es' ? 'en' : 'es';
   applyLang(currentLang);
 });
 
+/* ─── LENIS SMOOTH SCROLL ──────────────────────────────────── */
+const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((time) => lenis.raf(time * 1000));
+gsap.ticker.lagSmoothing(0);
+
 /* ─── NAVBAR ───────────────────────────────────────────────── */
 const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 20);
+lenis.on('scroll', ({ scroll }) => {
+  navbar.classList.toggle('scrolled', scroll > 20);
   highlightNav();
-}, { passive: true });
+});
 
 const menuToggle = document.getElementById('menuToggle');
 const navLinks   = document.getElementById('navLinks');
@@ -181,91 +179,243 @@ menuToggle.addEventListener('click', () => {
   menuToggle.classList.toggle('open');
   navLinks.classList.toggle('open');
 });
-
 navLinks.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', () => {
     menuToggle.classList.remove('open');
     navLinks.classList.remove('open');
   });
 });
-
 function highlightNav() {
   const sections = document.querySelectorAll('section[id]');
   let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 100) current = s.id;
-  });
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
   document.querySelectorAll('.nav-links a').forEach(a => {
     a.classList.toggle('active', a.getAttribute('href') === '#' + current);
   });
 }
 
-/* ─── SCROLL REVEAL ────────────────────────────────────────── */
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      revealObserver.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.1 });
+/* ─── CUSTOM CURSOR ────────────────────────────────────────── */
+const dot  = document.getElementById('cursor-dot');
+const ring = document.getElementById('cursor-ring');
+let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+let ringX  = mouseX, ringY = mouseY;
 
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+window.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  gsap.to(dot, { x: mouseX, y: mouseY, duration: 0.08, ease: 'none' });
+});
 
-/* ─── CARD STAGGER ─────────────────────────────────────────── */
-const staggerObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const cards = entry.target.querySelectorAll('.card, .timeline-item, .project-card');
-      cards.forEach((c, i) => {
-        c.style.transitionDelay = `${i * 80}ms`;
-        c.style.opacity = '1';
-        c.style.transform = 'translateY(0)';
-      });
-      staggerObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.05 });
+gsap.ticker.add(() => {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  gsap.set(ring, { x: ringX, y: ringY });
+});
 
-document.querySelectorAll('.skills-grid, .projects-grid, .timeline, .contact-links').forEach(el => {
-  el.querySelectorAll('.card, .timeline-item, .project-card, .contact-card').forEach(c => {
-    c.style.opacity = '0';
-    c.style.transform = 'translateY(20px)';
-    c.style.transition = 'opacity .5s, transform .5s';
+document.querySelectorAll('a, button, .card, .tag, .project-card').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+});
+
+/* ─── MOUSE PARALLAX ON ORBS ───────────────────────────────── */
+const orbs = document.querySelectorAll('.orb');
+window.addEventListener('mousemove', e => {
+  const cx = (e.clientX / window.innerWidth  - 0.5) * 2;
+  const cy = (e.clientY / window.innerHeight - 0.5) * 2;
+  orbs.forEach((orb, i) => {
+    const factor = (i + 1) * 18;
+    gsap.to(orb, { x: cx * factor, y: cy * factor, duration: 1.8, ease: 'power2.out' });
   });
-  staggerObserver.observe(el);
+});
+
+/* ─── SPLIT TEXT HELPER ────────────────────────────────────── */
+function splitIntoChars(el) {
+  const text = el.textContent;
+  el.innerHTML = text.split('').map(c =>
+    c === ' '
+      ? '<span class="char" style="display:inline-block">&nbsp;</span>'
+      : `<span class="char" style="display:inline-block">${c}</span>`
+  ).join('');
+  return el.querySelectorAll('.char');
+}
+
+/* ─── GSAP HERO ANIMATION ──────────────────────────────────── */
+gsap.registerPlugin(ScrollTrigger);
+
+const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+const nameEl  = document.querySelector('.hero-name');
+const nameText = nameEl ? nameEl.innerHTML : '';
+
+heroTl
+  .from('.available-badge',    { opacity: 0, y: 20, duration: .6 })
+  .from('.hero-greeting',      { opacity: 0, y: 20, duration: .5 }, '-=.3')
+  .add(() => {
+    if (!nameEl) return;
+    const accentSpan = nameEl.querySelector('.accent');
+    const accentText = accentSpan ? accentSpan.textContent : '';
+    const fullText   = nameEl.textContent;
+    nameEl.innerHTML = fullText.split('').map((c, i) => {
+      const isAccent = accentText && i >= fullText.indexOf(accentText);
+      return c === ' '
+        ? '<span class="char" style="display:inline-block">&nbsp;</span>'
+        : `<span class="char" style="display:inline-block;${isAccent ? 'background:linear-gradient(135deg,#22d3ee,#a78bfa);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent' : ''}">${c}</span>`;
+    }).join('');
+    gsap.from(nameEl.querySelectorAll('.char'), {
+      opacity: 0, y: 60, rotateX: -90,
+      stagger: 0.04, duration: .7, ease: 'back.out(2)'
+    });
+  }, '-=.1')
+  .from('.hero-title-wrapper', { opacity: 0, y: 20, duration: .5 }, '-=.2')
+  .from('.hero-subtitle',      { opacity: 0, y: 20, duration: .5 }, '-=.3')
+  .from('.hero-cta .btn',      { opacity: 0, y: 24, stagger: .1, duration: .5 }, '-=.2')
+  .from('.hero-socials .social-link', { opacity: 0, scale: 0, stagger: .08, duration: .4, ease: 'back.out(2)' }, '-=.2')
+  .from('.scroll-indicator',   { opacity: 0, duration: .6 }, '-=.1');
+
+/* ─── GSAP SCROLL ANIMATIONS ───────────────────────────────── */
+function scrollReveal(selector, vars = {}) {
+  gsap.from(selector, {
+    scrollTrigger: { trigger: selector, start: 'top 85%', toggleActions: 'play none none none' },
+    opacity: 0, y: 50, duration: .8, ease: 'power3.out',
+    ...vars
+  });
+}
+
+// Section titles
+document.querySelectorAll('.section-title').forEach(el => {
+  const chars = splitIntoChars(el);
+  gsap.from(chars, {
+    scrollTrigger: { trigger: el, start: 'top 88%' },
+    opacity: 0, y: 30, rotateX: -60,
+    stagger: 0.025, duration: .6, ease: 'back.out(1.5)'
+  });
+  // Animate underline
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 88%' },
+    '--underline-w': '0px',
+    duration: .8, ease: 'power2.out', delay: .3
+  });
+});
+
+// About section
+gsap.from('.about-text p', {
+  scrollTrigger: { trigger: '#about', start: 'top 80%' },
+  opacity: 0, x: -40, stagger: .15, duration: .7, ease: 'power3.out'
+});
+gsap.from('.info-item', {
+  scrollTrigger: { trigger: '.about-info', start: 'top 85%' },
+  opacity: 0, x: -30, stagger: .1, duration: .6, ease: 'power2.out'
+});
+gsap.from('.about-avatar', {
+  scrollTrigger: { trigger: '.about-card-wrapper', start: 'top 80%' },
+  opacity: 0, scale: .5, rotation: -15, duration: .9, ease: 'back.out(2)'
+});
+gsap.from('.stat', {
+  scrollTrigger: { trigger: '.about-stats', start: 'top 85%' },
+  opacity: 0, y: 30, stagger: .12, duration: .6, ease: 'back.out(1.5)'
+});
+
+// Skills cards
+gsap.from('.skill-category', {
+  scrollTrigger: { trigger: '#skills', start: 'top 75%' },
+  opacity: 0, y: 50, scale: .9, stagger: .1, duration: .7, ease: 'back.out(1.5)'
+});
+document.querySelectorAll('.skill-category').forEach(cat => {
+  gsap.from(cat.querySelectorAll('.tag'), {
+    scrollTrigger: { trigger: cat, start: 'top 85%' },
+    opacity: 0, scale: 0, stagger: .05, duration: .4, ease: 'back.out(2)', delay: .2
+  });
+});
+
+// Timeline
+gsap.from('.timeline::before', {
+  scrollTrigger: { trigger: '.timeline', start: 'top 80%', end: 'bottom 80%', scrub: 1 },
+  scaleY: 0, transformOrigin: 'top center'
+});
+gsap.from('.timeline-dot', {
+  scrollTrigger: { trigger: '.timeline', start: 'top 80%' },
+  scale: 0, stagger: .2, duration: .5, ease: 'back.out(2)'
+});
+gsap.from('.timeline-content', {
+  scrollTrigger: { trigger: '.timeline', start: 'top 80%' },
+  opacity: 0, x: 40, stagger: .2, duration: .7, ease: 'power3.out'
+});
+gsap.from('.job-bullets li', {
+  scrollTrigger: { trigger: '.timeline', start: 'top 75%' },
+  opacity: 0, x: 20, stagger: .08, duration: .5, ease: 'power2.out', delay: .3
+});
+
+// Projects
+gsap.from('.project-card', {
+  scrollTrigger: { trigger: '#projects', start: 'top 75%' },
+  opacity: 0, y: 60, rotateY: 8, stagger: .15, duration: .8, ease: 'power3.out'
+});
+
+// Education
+gsap.from('.education-card', {
+  scrollTrigger: { trigger: '#education', start: 'top 80%' },
+  opacity: 0, y: 40, duration: .8, ease: 'power3.out'
+});
+gsap.from('.edu-icon', {
+  scrollTrigger: { trigger: '#education', start: 'top 80%' },
+  scale: 0, rotation: -30, duration: .7, ease: 'back.out(2)', delay: .2
+});
+
+// Contact
+gsap.from('.contact-sub', {
+  scrollTrigger: { trigger: '#contact', start: 'top 85%' },
+  opacity: 0, y: 20, duration: .6, ease: 'power2.out'
+});
+gsap.from('.contact-card', {
+  scrollTrigger: { trigger: '.contact-links', start: 'top 85%' },
+  opacity: 0, x: -40, stagger: .12, duration: .6, ease: 'power3.out'
+});
+
+/* ─── MAGNETIC BUTTONS ─────────────────────────────────────── */
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    const x = (e.clientX - r.left - r.width  / 2) * 0.35;
+    const y = (e.clientY - r.top  - r.height / 2) * 0.35;
+    gsap.to(btn, { x, y, duration: .3, ease: 'power2.out' });
+  });
+  btn.addEventListener('mouseleave', () => {
+    gsap.to(btn, { x: 0, y: 0, duration: .6, ease: 'elastic.out(1, 0.4)' });
+  });
 });
 
 /* ─── ANIMATED COUNTERS ────────────────────────────────────── */
-function animateCounter(el, target, duration = 1200) {
-  const isSymbol = isNaN(target);
-  if (isSymbol) return;
-  let start = null;
-  const step = (ts) => {
-    if (!start) start = ts;
-    const progress = Math.min((ts - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.floor(eased * target) + '+';
-    if (progress < 1) requestAnimationFrame(step);
-    else el.textContent = target + '+';
-  };
-  requestAnimationFrame(step);
-}
-
-const statsObserver = new IntersectionObserver((entries) => {
+const statsObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
     entry.target.querySelectorAll('.stat-number').forEach(el => {
-      const raw = el.textContent.replace('+', '').trim();
-      const num = parseInt(raw);
-      if (!isNaN(num)) animateCounter(el, num);
+      const num = parseInt(el.textContent);
+      if (isNaN(num)) return;
+      gsap.fromTo({ val: 0 }, { val: num },
+        { val: num, duration: 1.4, ease: 'power2.out',
+          onUpdate: function() { el.textContent = Math.floor(this.targets()[0].val) + '+'; },
+          onComplete: () => { el.textContent = num + '+'; }
+        }
+      );
     });
     statsObserver.unobserve(entry.target);
   });
-}, { threshold: 0.5 });
+}, { threshold: .5 });
 
 const statsEl = document.querySelector('.about-stats');
 if (statsEl) statsObserver.observe(statsEl);
+
+/* ─── CARD TILT ON HOVER ───────────────────────────────────── */
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width  - .5;
+    const y = (e.clientY - r.top)  / r.height - .5;
+    gsap.to(card, { rotateY: x * 10, rotateX: -y * 10, duration: .3, ease: 'power2.out', transformPerspective: 800 });
+  });
+  card.addEventListener('mouseleave', () => {
+    gsap.to(card, { rotateY: 0, rotateX: 0, duration: .6, ease: 'elastic.out(1, .5)' });
+  });
+});
 
 /* ─── INIT ─────────────────────────────────────────────────── */
 applyLang('es');

@@ -32,6 +32,19 @@
 </head>
 <body>
 
+  <!-- Custom cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- Grain noise overlay -->
+  <svg class="noise-svg" xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute">
+    <filter id="noise-filter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </svg>
+  <div class="noise-overlay"></div>
+
   <!-- NAV -->
   <nav id="navbar">
     <div class="nav-inner">
@@ -356,6 +369,10 @@
     <p data-i18n="footer.text">Diseñado y desarrollado por Juan Ignacio Méndez · 2025</p>
   </footer>
 
+  <!-- Animation libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
