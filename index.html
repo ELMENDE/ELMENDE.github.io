@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juan Ignacio Méndez — Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#">JIM<span class="accent">.</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about"      data-i18n="nav.about">Sobre mí</a></li>
+        <li><a href="#skills"     data-i18n="nav.skills">Skills</a></li>
+        <li><a href="#experience" data-i18n="nav.experience">Experiencia</a></li>
+        <li><a href="#projects"   data-i18n="nav.projects">Proyectos</a></li>
+        <li><a href="#education"  data-i18n="nav.education">Educación</a></li>
+        <li><a href="#contact"    data-i18n="nav.contact">Contacto</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="lang-toggle" id="langToggle" aria-label="Switch language">EN</button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-greeting" data-i18n="hero.greeting">Hola, soy</p>
+      <h1 class="hero-name">Juan Ignacio <span class="accent">Méndez</span></h1>
+      <div class="hero-title-wrapper">
+        <span class="typed-text" id="typedText"></span><span class="cursor">|</span>
+      </div>
+      <p class="hero-subtitle" data-i18n="hero.subtitle">Construyo software que resuelve problemas reales.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary" data-i18n="hero.cta_projects">Ver proyectos</a>
+        <a href="#contact"  class="btn btn-ghost"   data-i18n="hero.cta_contact">Contacto</a>
+      </div>
+      <div class="hero-socials">
+        <a href="https://github.com/ELMENDE" target="_blank" rel="noopener" class="social-link" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/jmendeznalbarte" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="mailto:jmendeznalbarte@gmail.com" class="social-link" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+        </a>
+      </div>
+    </div>
+    <a href="#about" class="scroll-indicator" aria-label="Scroll down">
+      <span class="scroll-dot"></span>
+    </a>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section reveal">
+    <div class="container">
+      <h2 class="section-title" data-i18n="about.title">Sobre mí</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p data-i18n="about.bio1">Desarrollador en formación con experiencia práctica en automatización de datos. Trabajo en Asignet desarrollando parsers para clientes como Nike, Microsoft y Meta, y estudio Analista en Tecnologías de la Información en Universidad ORT Uruguay.</p>
+          <p data-i18n="about.bio2">Me apasiona construir productos que combinen buena ingeniería con inteligencia artificial. Cuando no estoy programando, me encontrás jugando al volleyball o en la bici.</p>
+          <div class="about-info">
+            <div class="info-item">
+              <span class="info-label" data-i18n="about.lbl_location">Ubicación</span>
+              <span>Montevideo, Uruguay</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label" data-i18n="about.lbl_languages">Idiomas</span>
+              <span data-i18n="about.languages_val">Español (Nativo) · Inglés (Fluido)</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label" data-i18n="about.lbl_interests">Intereses</span>
+              <span data-i18n="about.interests_val">Volleyball · Fútbol · Fitness · Rock · Ciclismo</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-card-wrapper">
+          <div class="about-avatar">JIM</div>
+          <div class="about-stats">
+            <div class="stat">
+              <span class="stat-number">3+</span>
+              <span class="stat-label" data-i18n="about.stat_projects">Proyectos</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">2+</span>
+              <span class="stat-label" data-i18n="about.stat_years">Años codificando</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">∞</span>
+              <span class="stat-label" data-i18n="about.stat_coffee">Cafés</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section section-alt reveal">
+    <div class="container">
+      <h2 class="section-title" data-i18n="skills.title">Habilidades</h2>
+      <div class="skills-grid">
+        <div class="skill-category card">
+          <h3 class="skill-cat-title">
+            <span class="skill-icon">🖥</span> Frontend
+          </h3>
+          <div class="skill-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Bootstrap</span>
+          </div>
+        </div>
+        <div class="skill-category card">
+          <h3 class="skill-cat-title">
+            <span class="skill-icon">📱</span> Mobile
+          </h3>
+          <div class="skill-tags">
+            <span class="tag">React Native</span>
+            <span class="tag">Expo</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">NativeWind</span>
+          </div>
+        </div>
+        <div class="skill-category card">
+          <h3 class="skill-cat-title">
+            <span class="skill-icon">⚙️</span> Backend
+          </h3>
+          <div class="skill-tags">
+            <span class="tag">Python</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">C#</span>
+            <span class="tag">.NET</span>
+            <span class="tag">ASP.NET</span>
+          </div>
+        </div>
+        <div class="skill-category card">
+          <h3 class="skill-cat-title">
+            <span class="skill-icon">🗄</span> Databases
+          </h3>
+          <div class="skill-tags">
+            <span class="tag">MySQL</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">Redis</span>
+          </div>
+        </div>
+        <div class="skill-category card">
+          <h3 class="skill-cat-title">
+            <span class="skill-icon">🤖</span> AI & APIs
+          </h3>
+          <div class="skill-tags">
+            <span class="tag">Claude AI</span>
+            <span class="tag">RESTful APIs</span>
+            <span class="tag">Meta Cloud API</span>
+            <span class="tag">AJAX</span>
+          </div>
+        </div>
+        <div class="skill-category card">
+          <h3 class="skill-cat-title">
+            <span class="skill-icon">🛠</span> Tools
+          </h3>
+          <div class="skill-tags">
+            <span class="tag">Git</span>
+            <span class="tag">GitHub</span>
+            <span class="tag">Docker</span>
+            <span class="tag">OOP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section reveal">
+    <div class="container">
+      <h2 class="section-title" data-i18n="experience.title">Experiencia</h2>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content card">
+            <div class="card-header">
+              <div>
+                <h3 class="job-title" data-i18n="experience.job1_title">RPA / Parser Developer</h3>
+                <p class="company">Asignet &nbsp;·&nbsp; Montevideo, Uruguay</p>
+              </div>
+              <span class="date-badge" data-i18n="experience.job1_date">Oct 2025 – Presente</span>
+            </div>
+            <ul class="job-bullets">
+              <li data-i18n="experience.job1_b1">Desarrollo de parsers para extracción automática de datos de facturas de clientes de alto perfil como Nike, Microsoft y Meta.</li>
+              <li data-i18n="experience.job1_b2">Gestión y seguimiento de incidentes mediante sistema de ticketing.</li>
+              <li data-i18n="experience.job1_b3">Automatización de procesos de lectura y procesamiento de documentos para reducir trabajo manual y minimizar errores.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content card">
+            <div class="card-header">
+              <div>
+                <h3 class="job-title" data-i18n="experience.job2_title">Referente de Cocina</h3>
+                <p class="company">Rudy Burgers &nbsp;·&nbsp; Montevideo, Uruguay</p>
+              </div>
+              <span class="date-badge" data-i18n="experience.job2_date">Feb 2024 – Oct 2025</span>
+            </div>
+            <ul class="job-bullets">
+              <li data-i18n="experience.job2_b1">Lideré equipo en entorno de alta demanda, gestionando incorporación de personal, resolución de conflictos y mejora de procesos operativos.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section section-alt reveal">
+    <div class="container">
+      <h2 class="section-title" data-i18n="projects.title">Proyectos</h2>
+      <div class="projects-grid">
+
+        <!-- Healthwise -->
+        <div class="project-card card">
+          <div class="project-header">
+            <span class="project-emoji">🍃</span>
+            <div class="project-links">
+              <a href="https://github.com/ELMENDE/planificador-comidas" target="_blank" rel="noopener" class="icon-link" title="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-name">Healthwise</h3>
+          <p class="project-desc" data-i18n="projects.p1_desc">App móvil iOS/Android que genera menús semanales personalizados con IA. Grupos familiares con sync en tiempo real, lista de compras automática, despensa digital y modo offline.</p>
+          <div class="project-tags">
+            <span class="tag tag-sm">React Native</span>
+            <span class="tag tag-sm">Expo</span>
+            <span class="tag tag-sm">TypeScript</span>
+            <span class="tag tag-sm">Supabase</span>
+            <span class="tag tag-sm">Claude AI</span>
+          </div>
+        </div>
+
+        <!-- Even -->
+        <div class="project-card card">
+          <div class="project-header">
+            <span class="project-emoji">💸</span>
+            <div class="project-links">
+              <span class="private-badge" data-i18n="projects.private">Privado</span>
+            </div>
+          </div>
+          <h3 class="project-name">Even — Tab</h3>
+          <p class="project-desc" data-i18n="projects.p2_desc">Bot de WhatsApp para dividir gastos grupales en Latinoamérica. Procesamiento de lenguaje natural: registrá un gasto en texto libre y Tab calcula balances y liquida deudas con el mínimo de transferencias.</p>
+          <div class="project-tags">
+            <span class="tag tag-sm">Python</span>
+            <span class="tag tag-sm">FastAPI</span>
+            <span class="tag tag-sm">Claude API</span>
+            <span class="tag tag-sm">Supabase</span>
+            <span class="tag tag-sm">Next.js</span>
+            <span class="tag tag-sm">WhatsApp API</span>
+          </div>
+        </div>
+
+        <!-- Haiku -->
+        <div class="project-card card">
+          <div class="project-header">
+            <span class="project-emoji">🌿</span>
+            <div class="project-links"></div>
+          </div>
+          <h3 class="project-name">Haiku — El arte de cuidar</h3>
+          <p class="project-desc" data-i18n="projects.p3_desc">Sitio web institucional para empresa familiar de cuidado domiciliario especializado. Presentación de servicios, formulario de contacto funcional y diseño centrado en confianza y calidez.</p>
+          <div class="project-tags">
+            <span class="tag tag-sm">HTML</span>
+            <span class="tag tag-sm">CSS</span>
+            <span class="tag tag-sm">JavaScript</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section reveal">
+    <div class="container">
+      <h2 class="section-title" data-i18n="education.title">Educación</h2>
+      <div class="card education-card">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-content">
+          <h3 data-i18n="education.degree">Analista en Tecnologías de la Información</h3>
+          <p class="company">Universidad ORT Uruguay &nbsp;·&nbsp; Montevideo</p>
+          <span class="date-badge" data-i18n="education.date">Marzo 2023 – Presente</span>
+          <p class="edu-desc" data-i18n="education.desc">Programa con énfasis en aprendizaje práctico mediante laboratorios y proyectos reales. Incluye talleres entre semestres para profundizar habilidades técnicas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section section-alt reveal">
+    <div class="container contact-container">
+      <h2 class="section-title" data-i18n="contact.title">Contacto</h2>
+      <p class="contact-sub" data-i18n="contact.sub">¿Tenés un proyecto en mente o querés charlar? Escribime.</p>
+      <div class="contact-links">
+        <a href="mailto:jmendeznalbarte@gmail.com" class="contact-card card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          <span>jmendeznalbarte@gmail.com</span>
+        </a>
+        <a href="https://linkedin.com/in/jmendeznalbarte" target="_blank" rel="noopener" class="contact-card card">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <span>linkedin.com/in/jmendeznalbarte</span>
+        </a>
+        <a href="https://github.com/ELMENDE" target="_blank" rel="noopener" class="contact-card card">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          <span>github.com/ELMENDE</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p data-i18n="footer.text">Diseñado y desarrollado por Juan Ignacio Méndez · 2025</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

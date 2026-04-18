@@ -1,0 +1,242 @@
+/* ─── TRANSLATIONS ─────────────────────────────────────────── */
+const T = {
+  es: {
+    'nav.about':       'Sobre mí',
+    'nav.skills':      'Skills',
+    'nav.experience':  'Experiencia',
+    'nav.projects':    'Proyectos',
+    'nav.education':   'Educación',
+    'nav.contact':     'Contacto',
+
+    'hero.greeting':     'Hola, soy',
+    'hero.subtitle':     'Construyo software que resuelve problemas reales.',
+    'hero.cta_projects': 'Ver proyectos',
+    'hero.cta_contact':  'Contacto',
+
+    'about.title':         'Sobre mí',
+    'about.bio1':          'Desarrollador en formación con experiencia práctica en automatización de datos. Trabajo en Asignet desarrollando parsers para clientes como Nike, Microsoft y Meta, y estudio Analista en Tecnologías de la Información en Universidad ORT Uruguay.',
+    'about.bio2':          'Me apasiona construir productos que combinen buena ingeniería con inteligencia artificial. Cuando no estoy programando, me encontrás jugando al volleyball o en la bici.',
+    'about.lbl_location':  'Ubicación',
+    'about.lbl_languages': 'Idiomas',
+    'about.languages_val': 'Español (Nativo) · Inglés (Fluido)',
+    'about.lbl_interests': 'Intereses',
+    'about.interests_val': 'Volleyball · Fútbol · Fitness · Rock · Ciclismo',
+    'about.stat_projects': 'Proyectos',
+    'about.stat_years':    'Años codificando',
+    'about.stat_coffee':   'Cafés',
+
+    'skills.title': 'Habilidades',
+
+    'experience.title':    'Experiencia',
+    'experience.job1_title': 'RPA / Parser Developer',
+    'experience.job1_date':  'Oct 2025 – Presente',
+    'experience.job1_b1':    'Desarrollo de parsers para extracción automática de datos de facturas de clientes de alto perfil como Nike, Microsoft y Meta.',
+    'experience.job1_b2':    'Gestión y seguimiento de incidentes mediante sistema de ticketing.',
+    'experience.job1_b3':    'Automatización de procesos de lectura y procesamiento de documentos para reducir trabajo manual y minimizar errores.',
+    'experience.job2_title': 'Referente de Cocina',
+    'experience.job2_date':  'Feb 2024 – Oct 2025',
+    'experience.job2_b1':    'Lideré equipo en entorno de alta demanda, gestionando incorporación de personal, resolución de conflictos y mejora de procesos operativos.',
+
+    'projects.title':   'Proyectos',
+    'projects.private': 'Privado',
+    'projects.p1_desc': 'App móvil iOS/Android que genera menús semanales personalizados con IA. Grupos familiares con sync en tiempo real, lista de compras automática, despensa digital y modo offline.',
+    'projects.p2_desc': 'Bot de WhatsApp para dividir gastos grupales en Latinoamérica. Procesamiento de lenguaje natural: registrá un gasto en texto libre y Tab calcula balances y liquida deudas con el mínimo de transferencias.',
+    'projects.p3_desc': 'Sitio web institucional para empresa familiar de cuidado domiciliario especializado. Presentación de servicios, formulario de contacto funcional y diseño centrado en confianza y calidez.',
+
+    'education.title':  'Educación',
+    'education.degree': 'Analista en Tecnologías de la Información',
+    'education.date':   'Marzo 2023 – Presente',
+    'education.desc':   'Programa con énfasis en aprendizaje práctico mediante laboratorios y proyectos reales. Incluye talleres entre semestres para profundizar habilidades técnicas.',
+
+    'contact.title': 'Contacto',
+    'contact.sub':   '¿Tenés un proyecto en mente o querés charlar? Escribime.',
+
+    'footer.text': 'Diseñado y desarrollado por Juan Ignacio Méndez · 2025',
+  },
+
+  en: {
+    'nav.about':       'About',
+    'nav.skills':      'Skills',
+    'nav.experience':  'Experience',
+    'nav.projects':    'Projects',
+    'nav.education':   'Education',
+    'nav.contact':     'Contact',
+
+    'hero.greeting':     "Hi, I'm",
+    'hero.subtitle':     'I build software that solves real problems.',
+    'hero.cta_projects': 'View projects',
+    'hero.cta_contact':  'Contact',
+
+    'about.title':         'About me',
+    'about.bio1':          'Developer in training with hands-on experience in data automation. I work at Asignet building parsers for high-profile clients like Nike, Microsoft, and Meta, and study Information Technology Analysis at Universidad ORT Uruguay.',
+    'about.bio2':          "I'm passionate about building products that combine solid engineering with artificial intelligence. When I'm not coding, you'll find me playing volleyball or cycling.",
+    'about.lbl_location':  'Location',
+    'about.lbl_languages': 'Languages',
+    'about.languages_val': 'Spanish (Native) · English (Fluent)',
+    'about.lbl_interests': 'Interests',
+    'about.interests_val': 'Volleyball · Football · Fitness · Rock · Cycling',
+    'about.stat_projects': 'Projects',
+    'about.stat_years':    'Years coding',
+    'about.stat_coffee':   'Coffees',
+
+    'skills.title': 'Skills',
+
+    'experience.title':    'Experience',
+    'experience.job1_title': 'RPA / Parser Developer',
+    'experience.job1_date':  'Oct 2025 – Present',
+    'experience.job1_b1':    'Built parsers for automated data extraction from monthly invoices of high-profile clients including Nike, Microsoft, and Meta.',
+    'experience.job1_b2':    'Managed incident tracking and resolution via a ticketing system.',
+    'experience.job1_b3':    'Automated document reading and processing workflows to reduce manual effort and minimize errors.',
+    'experience.job2_title': 'Kitchen Lead',
+    'experience.job2_date':  'Feb 2024 – Oct 2025',
+    'experience.job2_b1':    'Led a team in a high-demand environment, managing onboarding, conflict resolution, and operational process improvements.',
+
+    'projects.title':   'Projects',
+    'projects.private': 'Private',
+    'projects.p1_desc': 'iOS/Android mobile app that generates personalized weekly menus using AI. Family groups with real-time sync, automatic shopping list, digital pantry, and offline mode.',
+    'projects.p2_desc': 'WhatsApp bot for splitting group expenses across Latin America. Natural language processing: send a message describing an expense and Tab calculates balances and settles debts with the minimum number of transfers.',
+    'projects.p3_desc': 'Institutional website for a family-owned specialized home care company. Service presentation, functional contact form, and a design focused on trust and warmth.',
+
+    'education.title':  'Education',
+    'education.degree': 'Information Technology Analyst',
+    'education.date':   'March 2023 – Present',
+    'education.desc':   'Program focused on hands-on learning through labs and real-world projects. Includes inter-semester workshops to deepen technical skills.',
+
+    'contact.title': 'Contact',
+    'contact.sub':   'Have a project in mind or just want to chat? Reach out.',
+
+    'footer.text': 'Designed and developed by Juan Ignacio Méndez · 2025',
+  },
+};
+
+/* ─── TYPING EFFECT ────────────────────────────────────────── */
+const typedStrings = {
+  es: ['Developer', 'Builder de productos', 'Apasionado por la IA', 'RPA Developer'],
+  en: ['Developer', 'Product Builder', 'AI Enthusiast', 'RPA Developer'],
+};
+
+let typingState = { idx: 0, charIdx: 0, deleting: false, timeout: null };
+
+function typeLoop(lang) {
+  const el = document.getElementById('typedText');
+  if (!el) return;
+  const strings = typedStrings[lang];
+  const current = strings[typingState.idx % strings.length];
+
+  if (typingState.deleting) {
+    el.textContent = current.slice(0, typingState.charIdx - 1);
+    typingState.charIdx--;
+    if (typingState.charIdx === 0) {
+      typingState.deleting = false;
+      typingState.idx++;
+    }
+    typingState.timeout = setTimeout(() => typeLoop(lang), 60);
+  } else {
+    el.textContent = current.slice(0, typingState.charIdx + 1);
+    typingState.charIdx++;
+    if (typingState.charIdx === current.length) {
+      typingState.deleting = true;
+      typingState.timeout = setTimeout(() => typeLoop(lang), 2000);
+    } else {
+      typingState.timeout = setTimeout(() => typeLoop(lang), 80);
+    }
+  }
+}
+
+function restartTyping(lang) {
+  clearTimeout(typingState.timeout);
+  typingState = { idx: 0, charIdx: 0, deleting: false, timeout: null };
+  const el = document.getElementById('typedText');
+  if (el) el.textContent = '';
+  setTimeout(() => typeLoop(lang), 300);
+}
+
+/* ─── I18N ─────────────────────────────────────────────────── */
+let currentLang = 'es';
+
+function applyLang(lang) {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang][key] !== undefined) el.textContent = T[lang][key];
+  });
+  document.documentElement.lang = lang;
+  const btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = lang === 'es' ? 'EN' : 'ES';
+  restartTyping(lang);
+}
+
+document.getElementById('langToggle').addEventListener('click', () => {
+  currentLang = currentLang === 'es' ? 'en' : 'es';
+  applyLang(currentLang);
+});
+
+/* ─── NAVBAR ───────────────────────────────────────────────── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+  highlightNav();
+}, { passive: true });
+
+const menuToggle = document.getElementById('menuToggle');
+const navLinks   = document.getElementById('navLinks');
+menuToggle.addEventListener('click', () => {
+  menuToggle.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    menuToggle.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
+
+function highlightNav() {
+  const sections = document.querySelectorAll('section[id]');
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+
+/* ─── SCROLL REVEAL ────────────────────────────────────────── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ─── CARD STAGGER ─────────────────────────────────────────── */
+const staggerObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const cards = entry.target.querySelectorAll('.card, .timeline-item, .project-card');
+      cards.forEach((c, i) => {
+        c.style.transitionDelay = `${i * 80}ms`;
+        c.style.opacity = '1';
+        c.style.transform = 'translateY(0)';
+      });
+      staggerObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('.skills-grid, .projects-grid, .timeline, .contact-links').forEach(el => {
+  el.querySelectorAll('.card, .timeline-item, .project-card, .contact-card').forEach(c => {
+    c.style.opacity = '0';
+    c.style.transform = 'translateY(20px)';
+    c.style.transition = 'opacity .5s, transform .5s';
+  });
+  staggerObserver.observe(el);
+});
+
+/* ─── INIT ─────────────────────────────────────────────────── */
+applyLang('es');
