@@ -1,0 +1,48 @@
+/* ─── RESET ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ─── TOKENS ────────────────────────────────────────────────── */
+:root {
+  --bg:        #080811;
+  --bg-alt:    #0d0d1a;
+  --card:      #111122;
+  --card-hover:#161630;
+  --border:    rgba(120, 120, 200, 0.12);
+  --border-h:  rgba(120, 120, 200, 0.28);
+  --text:      #e8e8f0;
+  --muted:     #7070a0;
+  --cyan:      #22d3ee;
+  --purple:    #a78bfa;
+  --gradient:  linear-gradient(135deg, #22d3ee, #a78bfa);
+  --glow-c:    rgba(34, 211, 238, 0.15);
+  --glow-p:    rgba(167, 139, 250, 0.15);
+  --radius:    14px;
+  --nav-h:     64px;
+}
+
+/* ─── BASE ──────────────────────────────────────────────────── */
+html { scroll-behavior: auto; } /* handled by Lenis */
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* ─── SCROLLBAR ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-h); border-radius: 99px; }
+
+/* ─── ACCENT UTILITY ────────────────────────────────────────── */
+.accent {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
