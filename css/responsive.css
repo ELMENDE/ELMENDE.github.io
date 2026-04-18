@@ -1,19 +1,28 @@
-/* ─── TABLET ─────────────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .skills-grid    { grid-template-columns: repeat(2, 1fr); }
-  .projects-grid  { grid-template-columns: repeat(2, 1fr); }
-  .about-grid     { grid-template-columns: 1fr; }
-  .about-card-wrapper { flex-direction: row; align-items: center; }
+/* ─── TABLET LANDSCAPE  (≤ 1024px) ─────────────────────────── */
+@media (max-width: 1024px) {
+  .container { max-width: 860px; }
 }
 
-/* ─── MOBILE ─────────────────────────────────────────────────── */
+/* ─── TABLET PORTRAIT  (≤ 900px) ───────────────────────────── */
+@media (max-width: 900px) {
+  .skills-grid        { grid-template-columns: repeat(2, 1fr); }
+  .projects-grid      { grid-template-columns: repeat(2, 1fr); }
+  .about-grid         { grid-template-columns: 1fr; }
+  .about-card-wrapper { flex-direction: row; align-items: center; gap: 32px; }
+  .about-avatar       { width: 120px; height: 120px; }
+
+  .section { padding: 80px 24px; }
+}
+
+/* ─── MOBILE  (≤ 700px) ─────────────────────────────────────── */
 @media (max-width: 700px) {
+  /* Navbar */
   .nav-links { display: none; flex-direction: column; gap: 20px; }
   .nav-links.open {
     display: flex;
     position: fixed;
     top: var(--nav-h); left: 0; right: 0;
-    background: rgba(8,8,17,.97);
+    background: rgba(8, 8, 17, .97);
     backdrop-filter: blur(16px);
     padding: 32px 24px;
     border-bottom: 1px solid var(--border);
@@ -21,18 +30,82 @@
   .nav-links.open a { font-size: 1.05rem; }
   .menu-toggle { display: flex; }
 
+  /* Hero */
+  #hero { padding: calc(var(--nav-h) + 24px) 20px 60px; }
+  .hero-content { max-width: 100%; }
+  .hero-subtitle { font-size: .95rem; }
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-cta .btn { width: 100%; max-width: 280px; justify-content: center; }
+  .hero-socials { gap: 12px; }
+
+  /* Sections */
+  .section { padding: 64px 20px; }
+  .section-title { margin-bottom: 40px; }
+
+  /* About */
+  .about-card-wrapper { flex-direction: column; align-items: center; }
+  .about-avatar       { width: 110px; height: 110px; }
+  .about-stats        { grid-template-columns: repeat(3, 1fr); }
+
+  /* Skills / Projects */
   .skills-grid   { grid-template-columns: 1fr 1fr; }
   .projects-grid { grid-template-columns: 1fr; }
 
-  .about-card-wrapper { flex-direction: column; }
-
+  /* Timeline */
   .timeline     { padding-left: 24px; }
   .timeline-dot { left: -21px; }
+  .card-header  { flex-direction: column; gap: 8px; }
+  .date-badge   { align-self: flex-start; }
+
+  /* Cards */
+  .card { padding: 20px; }
 }
 
-/* ─── SMALL MOBILE ───────────────────────────────────────────── */
+/* ─── SMALL MOBILE  (≤ 480px) ──────────────────────────────── */
 @media (max-width: 480px) {
-  .skills-grid    { grid-template-columns: 1fr; }
-  .hero-name      { font-size: 2.4rem; }
-  .education-card { flex-direction: column; }
+  :root { --nav-h: 56px; }
+
+  /* Hero name — clamp handles size, ensure single-word nowrap works */
+  .hero-name    { letter-spacing: -.01em; }
+  .hero-greeting { font-size: .8rem; }
+  .available-badge { font-size: .72rem; padding: 5px 12px; }
+
+  /* Skills */
+  .skills-grid { grid-template-columns: 1fr; }
+
+  /* Education */
+  .education-card { flex-direction: column; gap: 16px; }
+  .edu-icon       { font-size: 2rem; margin-top: 0; }
+
+  /* About stats */
+  .stat-number { font-size: 1.3rem; }
+  .stat-label  { font-size: .68rem; }
+
+  /* Sections */
+  .section { padding: 52px 16px; }
+
+  /* Cards */
+  .card { padding: 18px; }
+
+  /* Contact */
+  .contact-card { padding: 16px 18px; gap: 12px; font-size: .85rem; }
+}
+
+/* ─── EXTRA SMALL  (≤ 360px) ───────────────────────────────── */
+@media (max-width: 360px) {
+  .hero-cta .btn { max-width: 100%; }
+  .about-stats   { grid-template-columns: repeat(3, 1fr); }
+  .stat          { padding: 14px 6px; }
+}
+
+/* ─── TOUCH DEVICES — disable hover-only effects ───────────── */
+@media (hover: none) {
+  .card:hover         { transform: none; box-shadow: none; }
+  .btn:hover          { transform: none; }
+  .social-link:hover  { transform: none; }
+  .icon-link:hover    { transform: none; }
 }
