@@ -9,13 +9,23 @@ function splitHeroName() {
       parts.push({ text: node.textContent, accent: node.classList.contains('accent') });
     }
   });
-  el.innerHTML = parts.map(p =>
-    p.text.split('').map(c => {
-      const disp = c === ' ' ? '&nbsp;' : c;
-      const cls  = p.accent ? 'char accent' : 'char';
-      return `<span class="${cls}">${disp}</span>`;
-    }).join('')
-  ).join('');
+
+  /* Split by word, wrap each word in a nowrap container so words never break mid-char */
+  const wordSpans = [];
+  parts.forEach(p => {
+    const tokens = p.text.split(/( )/);
+    tokens.forEach(token => {
+      if (token === ' ') {
+        wordSpans.push('<span class="word-sep">&nbsp;</span>');
+      } else if (token.length > 0) {
+        const cls = p.accent ? 'char accent' : 'char';
+        const chars = token.split('').map(c => `<span class="${cls}">${c}</span>`).join('');
+        wordSpans.push(`<span class="word-wrap">${chars}</span>`);
+      }
+    });
+  });
+
+  el.innerHTML = wordSpans.join('');
   return Array.from(el.querySelectorAll('.char'));
 }
 
