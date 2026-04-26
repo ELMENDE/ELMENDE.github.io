@@ -4,62 +4,51 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Juan Ignacio Méndez — Developer</title>
+
   <!-- Favicon -->
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 
   <!-- SEO -->
-  <meta name="description" content="Juan Ignacio Méndez — Developer. Construyo software con IA. RPA, Mobile, Backend." />
-  <meta name="keywords" content="Juan Ignacio Méndez, developer, portfolio, React Native, Python, Supabase, Uruguay" />
+  <meta name="description" content="Juan Ignacio Méndez, RPA Developer en Montevideo. Automatizo procesos y construyo proyectos propios." />
   <meta name="author" content="Juan Ignacio Méndez" />
 
   <!-- Open Graph -->
   <meta property="og:type"        content="website" />
   <meta property="og:url"         content="https://elmende.github.io/" />
   <meta property="og:title"       content="Juan Ignacio Méndez — Developer" />
-  <meta property="og:description" content="Construyo software que resuelve problemas reales. RPA, Mobile Apps, AI integrations." />
+  <meta property="og:description" content="RPA Developer en Asignet. Construyo proyectos propios en paralelo." />
   <meta property="og:image"       content="https://elmende.github.io/assets/foto.jpg" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="Juan Ignacio Méndez — Developer" />
-  <meta name="twitter:description" content="Construyo software que resuelve problemas reales." />
+  <meta name="twitter:description" content="RPA Developer en Asignet. Construyo proyectos propios en paralelo." />
   <meta name="twitter:image"       content="https://elmende.github.io/assets/foto.jpg" />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
   <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
 
-  <!-- Custom cursor -->
-  <div id="cursor-dot"></div>
-  <div id="cursor-ring"></div>
-
-  <!-- Grain noise overlay -->
-  <svg class="noise-svg" xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute">
-    <filter id="noise-filter">
-      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
-      <feColorMatrix type="saturate" values="0"/>
-    </filter>
-  </svg>
-  <div class="noise-overlay"></div>
-
-  <!-- NAV -->
+  <!-- NAVBAR -->
   <nav id="navbar">
     <div class="nav-inner">
-      <a class="nav-logo" href="#">JIM<span class="accent">.</span></a>
+      <a class="nav-logo" href="#">JIM<span class="accent-dot">.</span></a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#about"      data-i18n="nav.about">Sobre mí</a></li>
-        <li><a href="#skills"     data-i18n="nav.skills">Skills</a></li>
-        <li><a href="#experience" data-i18n="nav.experience">Experiencia</a></li>
-        <li><a href="#projects"   data-i18n="nav.projects">Proyectos</a></li>
-        <li><a href="#education"  data-i18n="nav.education">Educación</a></li>
-        <li><a href="#contact"    data-i18n="nav.contact">Contacto</a></li>
+        <li><a href="#about"    data-i18n="nav.about">Sobre mí</a></li>
+        <li><a href="#work"     data-i18n="nav.work">Trabajo</a></li>
+        <li><a href="#projects" data-i18n="nav.projects">Proyectos</a></li>
+        <li><a href="#skills"   data-i18n="nav.skills">Skills</a></li>
+        <li><a href="#contact"  data-i18n="nav.contact">Contacto</a></li>
       </ul>
       <div class="nav-right">
-        <button class="lang-toggle" id="langToggle" aria-label="Switch language">EN</button>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <button class="lang-btn" id="langToggle" aria-label="Switch language">EN</button>
+        <button class="menu-btn" id="menuToggle" aria-label="Toggle menu">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -67,165 +56,43 @@
   </nav>
 
   <!-- HERO -->
-  <section id="hero">
-    <div class="hero-bg">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="orb orb-3"></div>
-      <div class="grid-overlay"></div>
-    </div>
-    <div class="hero-content">
-      <div class="available-badge">
-        <span class="available-dot"></span>
-        <span data-i18n="hero.available">Disponible para trabajar</span>
-      </div>
-      <p class="hero-greeting" data-i18n="hero.greeting">Hola, soy</p>
-      <h1 class="hero-name">Juan Ignacio <span class="accent">Méndez</span></h1>
-      <div class="hero-title-wrapper">
-        <span class="typed-text" id="typedText"></span><span class="cursor">|</span>
-      </div>
-      <p class="hero-subtitle" data-i18n="hero.subtitle">Construyo software que resuelve problemas reales.</p>
-      <div class="hero-cta">
-        <a href="#projects" class="btn btn-primary" data-i18n="hero.cta_projects">Ver proyectos</a>
-        <a href="#contact"  class="btn btn-ghost"   data-i18n="hero.cta_contact">Contacto</a>
-        <a href="assets/cv.pdf" download class="btn btn-ghost" data-i18n="hero.cta_cv">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Descargar CV
-        </a>
-      </div>
-      <div class="hero-socials">
-        <a href="https://github.com/ELMENDE" target="_blank" rel="noopener" class="social-link" title="GitHub">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-        </a>
-        <a href="https://linkedin.com/in/jmendeznalbarte" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <a href="mailto:jmendeznalbarte@gmail.com" class="social-link" title="Email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
-        </a>
+  <section id="hero" class="section-hero">
+    <div class="hero-inner">
+      <span class="hero-label" data-i18n="hero.label">RPA Developer · Montevideo, Uruguay</span>
+      <h1 class="hero-name">Juan Ignacio<br>Méndez</h1>
+      <p class="hero-desc" data-i18n="hero.desc">Trabajo en Asignet automatizando procesos con scripts. Los fines de semana construyo mis proyectos. Estudio Analista TI en ORT.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-accent" data-i18n="hero.cta1">Ver proyectos</a>
+        <a href="#contact"  class="btn btn-outline" data-i18n="hero.cta2">Escribime</a>
       </div>
     </div>
-    <a href="#about" class="scroll-indicator" aria-label="Scroll down">
-      <span class="scroll-dot"></span>
-    </a>
   </section>
 
   <!-- ABOUT -->
-  <section id="about" class="section reveal">
+  <section id="about" class="section">
     <div class="container">
-      <h2 class="section-title" data-i18n="about.title">Sobre mí</h2>
-      <div class="about-grid">
+      <p class="section-heading fade-in" data-i18n="about.title">Sobre mí</p>
+      <div class="about-layout fade-in">
         <div class="about-text">
-          <p data-i18n="about.bio1">Desarrollador en formación con experiencia práctica en automatización de datos. Trabajo en Asignet desarrollando parsers para clientes como Nike, Microsoft y Meta, y estudio Analista en Tecnologías de la Información en Universidad ORT Uruguay.</p>
-          <p data-i18n="about.bio2">Me apasiona construir productos que combinen buena ingeniería con inteligencia artificial. Cuando no estoy programando, me encontrás jugando al volleyball o en la bici.</p>
-          <div class="about-info">
-            <div class="info-item">
-              <span class="info-label" data-i18n="about.lbl_location">Ubicación</span>
-              <span>Montevideo, Uruguay</span>
-            </div>
-            <div class="info-item">
-              <span class="info-label" data-i18n="about.lbl_languages">Idiomas</span>
-              <span data-i18n="about.languages_val">Español (Nativo) · Inglés (Fluido)</span>
-            </div>
-            <div class="info-item">
-              <span class="info-label" data-i18n="about.lbl_interests">Intereses</span>
-              <span data-i18n="about.interests_val">Volleyball · Fútbol · Fitness · Rock · Ciclismo</span>
-            </div>
-          </div>
+          <p data-i18n="about.bio1">Escribo scripts que se conectan a los portales de clientes — Nike, Microsoft, Meta — y bajan las facturas del mes de forma automática. Cuando el pipeline falla o un portal cambia su estructura, lo resuelvo por ticketing. Cosas que antes alguien hacía a mano, ahora corren solas en un schedule.</p>
+          <p data-i18n="about.bio2">Curso Analista en Tecnologías de la Información en Universidad ORT Uruguay desde 2023. Fuera del trabajo: volleyball, bicicleta, fútbol, algo de rock.</p>
         </div>
-        <div class="about-card-wrapper">
-          <div class="about-avatar">
-            <img src="assets/foto.jpg" alt="Juan Ignacio Méndez" />
+        <div class="about-sidebar">
+          <div class="info-row">
+            <span class="info-key" data-i18n="about.k_loc">Ubicación</span>
+            <span class="info-val" data-i18n="about.v_loc">Montevideo, Uruguay</span>
           </div>
-          <div class="about-stats">
-            <div class="stat">
-              <span class="stat-number">3+</span>
-              <span class="stat-label" data-i18n="about.stat_projects">Proyectos</span>
-            </div>
-            <div class="stat">
-              <span class="stat-number">2+</span>
-              <span class="stat-label" data-i18n="about.stat_years">Años codificando</span>
-            </div>
-            <div class="stat">
-              <span class="stat-number">∞</span>
-              <span class="stat-label" data-i18n="about.stat_coffee">Cafés</span>
-            </div>
+          <div class="info-row">
+            <span class="info-key" data-i18n="about.k_status">Estado</span>
+            <span class="info-val" data-i18n="about.v_status">Empleado en Asignet</span>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills" class="section section-alt reveal">
-    <div class="container">
-      <h2 class="section-title" data-i18n="skills.title">Habilidades</h2>
-      <div class="skills-grid">
-        <div class="skill-category card">
-          <h3 class="skill-cat-title">
-            <span class="skill-icon">🖥</span> Frontend
-          </h3>
-          <div class="skill-tags">
-            <span class="tag">HTML5</span>
-            <span class="tag">CSS3</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">Bootstrap</span>
+          <div class="info-row">
+            <span class="info-key" data-i18n="about.k_langs">Idiomas</span>
+            <span class="info-val" data-i18n="about.v_langs">Español (nativo) · Inglés (fluido)</span>
           </div>
-        </div>
-        <div class="skill-category card">
-          <h3 class="skill-cat-title">
-            <span class="skill-icon">📱</span> Mobile
-          </h3>
-          <div class="skill-tags">
-            <span class="tag">React Native</span>
-            <span class="tag">Expo</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">NativeWind</span>
-          </div>
-        </div>
-        <div class="skill-category card">
-          <h3 class="skill-cat-title">
-            <span class="skill-icon">⚙️</span> Backend
-          </h3>
-          <div class="skill-tags">
-            <span class="tag">Python</span>
-            <span class="tag">FastAPI</span>
-            <span class="tag">C#</span>
-            <span class="tag">.NET</span>
-            <span class="tag">ASP.NET</span>
-          </div>
-        </div>
-        <div class="skill-category card">
-          <h3 class="skill-cat-title">
-            <span class="skill-icon">🗄</span> Databases
-          </h3>
-          <div class="skill-tags">
-            <span class="tag">MySQL</span>
-            <span class="tag">PostgreSQL</span>
-            <span class="tag">Supabase</span>
-            <span class="tag">Redis</span>
-          </div>
-        </div>
-        <div class="skill-category card">
-          <h3 class="skill-cat-title">
-            <span class="skill-icon">🤖</span> AI & APIs
-          </h3>
-          <div class="skill-tags">
-            <span class="tag">Claude AI</span>
-            <span class="tag">RESTful APIs</span>
-            <span class="tag">Meta Cloud API</span>
-            <span class="tag">AJAX</span>
-          </div>
-        </div>
-        <div class="skill-category card">
-          <h3 class="skill-cat-title">
-            <span class="skill-icon">🛠</span> Tools
-          </h3>
-          <div class="skill-tags">
-            <span class="tag">Git</span>
-            <span class="tag">GitHub</span>
-            <span class="tag">Docker</span>
-            <span class="tag">OOP</span>
+          <div class="info-row">
+            <span class="info-key" data-i18n="about.k_hobbies">Fuera del trabajo</span>
+            <span class="info-val" data-i18n="about.v_hobbies">Volleyball · Ciclismo · Fútbol</span>
           </div>
         </div>
       </div>
@@ -233,146 +100,133 @@
   </section>
 
   <!-- EXPERIENCE -->
-  <section id="experience" class="section reveal">
+  <section id="work" class="section">
     <div class="container">
-      <h2 class="section-title" data-i18n="experience.title">Experiencia</h2>
-      <div class="timeline">
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content card">
-            <div class="card-header">
-              <div>
-                <h3 class="job-title" data-i18n="experience.job1_title">RPA / Parser Developer</h3>
-                <p class="company">Asignet &nbsp;·&nbsp; Montevideo, Uruguay</p>
-              </div>
-              <span class="date-badge" data-i18n="experience.job1_date">Oct 2025 – Presente</span>
-            </div>
-            <ul class="job-bullets">
-              <li data-i18n="experience.job1_b1">Construyo pipelines de automatización end-to-end: scripts RPA que descargan facturas automáticamente desde los portales de clientes como Nike, Microsoft y Meta, y parsers que extraen y estructuran los datos sin intervención humana.</li>
-              <li data-i18n="experience.job1_b2">El proceso completo — descarga, extracción y procesamiento — corre de forma 100% automatizada, eliminando trabajo manual repetitivo a escala.</li>
-              <li data-i18n="experience.job1_b3">Gestión de incidentes mediante sistema de ticketing, asegurando tiempos de respuesta eficientes ante fallos en el pipeline.</li>
-            </ul>
-          </div>
+      <p class="section-heading fade-in" data-i18n="work.title">Experiencia</p>
+      <div class="work-item fade-in">
+        <div class="work-meta">
+          <span class="work-date" data-i18n="work.date">Oct 2025 – Presente</span>
+          <span class="work-company" data-i18n="work.company">Asignet</span>
         </div>
-
-
+        <div class="work-content">
+          <h3 class="work-role" data-i18n="work.role">RPA Developer</h3>
+          <p class="work-desc" data-i18n="work.desc">Escribo scripts de automatización que se loguean en portales de proveedores de grandes empresas y descargan las facturas del mes sin intervención humana. Cuando algo falla — un portal cambia su estructura, una sesión expira, un endpoint se cae — lo resuelvo vía ticketing y actualizo el script.</p>
+          <ul class="work-tags">
+            <li>RPA</li>
+            <li>Python</li>
+            <li>Git</li>
+            <li>Ticketing</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- PROJECTS -->
-  <section id="projects" class="section section-alt reveal">
+  <section id="projects" class="section">
     <div class="container">
-      <h2 class="section-title" data-i18n="projects.title">Proyectos</h2>
-      <div class="projects-grid">
+      <p class="section-heading fade-in" data-i18n="projects.title">Proyectos</p>
+      <div class="projects-grid fade-in">
 
         <!-- Healthwise -->
-        <div class="project-card card">
-          <div class="project-header">
-            <span class="project-emoji">🍃</span>
-            <div class="project-links">
-              <a href="https://github.com/ELMENDE/planificador-comidas" target="_blank" rel="noopener" class="icon-link" title="GitHub">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-              </a>
-            </div>
+        <div class="project-card">
+          <div class="project-top">
+            <h3 class="project-name" data-i18n="projects.p1_name">Healthwise</h3>
+            <span class="project-status" data-i18n="projects.wip">En progreso</span>
           </div>
-          <h3 class="project-name">Healthwise</h3>
-          <p class="project-desc" data-i18n="projects.p1_desc">App móvil iOS/Android que genera menús semanales personalizados con IA. Grupos familiares con sync en tiempo real, lista de compras automática, despensa digital y modo offline.</p>
-          <div class="project-tags">
-            <span class="tag tag-sm">React Native</span>
-            <span class="tag tag-sm">Expo</span>
-            <span class="tag tag-sm">TypeScript</span>
-            <span class="tag tag-sm">Supabase</span>
-            <span class="tag tag-sm">Claude AI</span>
-          </div>
+          <p class="project-desc" data-i18n="projects.p1_desc">App móvil (iOS/Android) para familias. Configurás las preferencias de cada integrante y genera el menú de la semana con IA. La lista del súper se sincroniza en tiempo real entre todos, y funciona sin internet. Sin demo pública todavía.</p>
+          <ul class="project-stack">
+            <li>React Native</li>
+            <li>Expo</li>
+            <li>TypeScript</li>
+            <li>Supabase</li>
+            <li>Claude AI</li>
+          </ul>
+          <a href="https://github.com/ELMENDE/planificador-comidas" target="_blank" rel="noopener" class="project-link" data-i18n="projects.p1_link">Ver código →</a>
         </div>
 
-        <!-- Even -->
-        <div class="project-card card">
-          <div class="project-header">
-            <span class="project-emoji">💸</span>
-            <div class="project-links">
-              <span class="private-badge" data-i18n="projects.private">Privado</span>
-            </div>
+        <!-- Even — Tab -->
+        <div class="project-card">
+          <div class="project-top">
+            <h3 class="project-name" data-i18n="projects.p2_name">Even — Tab</h3>
+            <span class="project-status" data-i18n="projects.wip">En progreso</span>
           </div>
-          <h3 class="project-name">Even — Tab</h3>
-          <p class="project-desc" data-i18n="projects.p2_desc">Bot de WhatsApp para dividir gastos grupales en Latinoamérica. Procesamiento de lenguaje natural: registrá un gasto en texto libre y Tab calcula balances y liquida deudas con el mínimo de transferencias.</p>
-          <div class="project-tags">
-            <span class="tag tag-sm">Python</span>
-            <span class="tag tag-sm">FastAPI</span>
-            <span class="tag tag-sm">Claude API</span>
-            <span class="tag tag-sm">Supabase</span>
-            <span class="tag tag-sm">Next.js</span>
-            <span class="tag tag-sm">WhatsApp API</span>
-          </div>
-        </div>
-
-        <!-- Haiku -->
-        <div class="project-card card">
-          <div class="project-header">
-            <span class="project-emoji">🌿</span>
-            <div class="project-links"></div>
-          </div>
-          <h3 class="project-name">Haiku — El arte de cuidar</h3>
-          <p class="project-desc" data-i18n="projects.p3_desc">Sitio web institucional para empresa familiar de cuidado domiciliario especializado. Presentación de servicios, formulario de contacto funcional y diseño centrado en confianza y calidez.</p>
-          <div class="project-tags">
-            <span class="tag tag-sm">HTML</span>
-            <span class="tag tag-sm">CSS</span>
-            <span class="tag tag-sm">JavaScript</span>
-          </div>
+          <p class="project-desc" data-i18n="projects.p2_desc">Bot de WhatsApp para dividir gastos en grupo. Mandás un mensaje del estilo "Pagué $30 de la cena, éramos 3" y el bot lo registra, lleva los saldos y al final dice quién le debe cuánto a quién. Sin demo pública todavía.</p>
+          <ul class="project-stack">
+            <li>Python</li>
+            <li>FastAPI</li>
+            <li>Claude API</li>
+            <li>Supabase</li>
+            <li>WhatsApp API</li>
+          </ul>
+          <span class="project-private" data-i18n="projects.private">Repositorio privado</span>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- EDUCATION -->
-  <section id="education" class="section reveal">
+  <!-- SKILLS -->
+  <section id="skills" class="section">
     <div class="container">
-      <h2 class="section-title" data-i18n="education.title">Educación</h2>
-      <div class="card education-card">
-        <div class="edu-icon">🎓</div>
+      <p class="section-heading fade-in" data-i18n="skills.title">Skills</p>
+      <div class="skills-layout fade-in">
+        <div class="skill-group">
+          <span class="skill-group-label" data-i18n="skills.lbl_work">En el trabajo</span>
+          <p class="skill-list" data-i18n="skills.val_work">Automatización RPA · Scripting · Git · Gestión de incidentes por ticketing</p>
+        </div>
+        <div class="skill-group">
+          <span class="skill-group-label" data-i18n="skills.lbl_own">Proyectos propios</span>
+          <p class="skill-list" data-i18n="skills.val_own">React Native · Python · FastAPI · Supabase · TypeScript · Claude API</p>
+        </div>
+        <div class="skill-group">
+          <span class="skill-group-label" data-i18n="skills.lbl_ort">Aprendiendo en ORT</span>
+          <p class="skill-list" data-i18n="skills.val_ort">C# · .NET · ASP.NET · MySQL · Programación orientada a objetos</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section">
+    <div class="container">
+      <p class="section-heading fade-in" data-i18n="edu.title">Educación</p>
+      <div class="edu-item fade-in">
+        <span class="edu-date" data-i18n="edu.date">2023 — cursando</span>
         <div class="edu-content">
-          <h3 data-i18n="education.degree">Analista en Tecnologías de la Información</h3>
-          <p class="company">Universidad ORT Uruguay &nbsp;·&nbsp; Montevideo</p>
-          <span class="date-badge" data-i18n="education.date">Marzo 2023 – Presente</span>
-          <p class="edu-desc" data-i18n="education.desc">Programa con énfasis en aprendizaje práctico mediante laboratorios y proyectos reales. Incluye talleres entre semestres para profundizar habilidades técnicas.</p>
+          <h3 class="edu-degree" data-i18n="edu.degree">Analista en Tecnologías de la Información</h3>
+          <p class="edu-school" data-i18n="edu.school">Universidad ORT Uruguay</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="section section-alt reveal">
-    <div class="container contact-container">
-      <h2 class="section-title" data-i18n="contact.title">Contacto</h2>
-      <p class="contact-sub" data-i18n="contact.sub">¿Tenés un proyecto en mente o querés charlar? Escribime.</p>
-      <div class="contact-links">
-        <a href="mailto:jmendeznalbarte@gmail.com" class="contact-card card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
-          <span>jmendeznalbarte@gmail.com</span>
-        </a>
-        <a href="https://linkedin.com/in/jmendeznalbarte" target="_blank" rel="noopener" class="contact-card card">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          <span>linkedin.com/in/jmendeznalbarte</span>
-        </a>
-        <a href="https://github.com/ELMENDE" target="_blank" rel="noopener" class="contact-card card">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-          <span>github.com/ELMENDE</span>
-        </a>
+  <section id="contact" class="section">
+    <div class="container">
+      <p class="section-heading fade-in" data-i18n="contact.title">Contacto</p>
+      <div class="fade-in">
+        <p class="contact-desc" data-i18n="contact.desc">Si tenés algo concreto para proponer, escribime por mail. Si querés ver en qué estoy trabajando, encontrás más en LinkedIn y GitHub.</p>
+        <div class="contact-links">
+          <a href="mailto:jmendeznalbarte@gmail.com" class="contact-link">jmendeznalbarte@gmail.com</a>
+          <a href="https://linkedin.com/in/jmendeznalbarte" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
+          <a href="https://github.com/ELMENDE" target="_blank" rel="noopener" class="contact-link">GitHub</a>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
-    <p data-i18n="footer.text">Diseñado y desarrollado por Juan Ignacio Méndez · 2025</p>
+    <div class="container">
+      <span class="footer-text" data-i18n="footer.copy">Juan Ignacio Méndez · 2025</span>
+      <div class="footer-links">
+        <a href="assets/cv.pdf" download data-i18n="footer.cv">Descargar CV</a>
+        <a href="https://github.com/ELMENDE" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
   </footer>
 
-  <!-- Animation libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script type="module" src="js/main.js"></script>
 </body>
 </html>
