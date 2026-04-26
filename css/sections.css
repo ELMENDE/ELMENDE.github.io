@@ -89,7 +89,9 @@
   border: 1px solid var(--border);
   padding: 2px 9px;
   border-radius: 4px;
+  transition: border-color .2s, color .2s;
 }
+.work-tags li:hover { border-color: var(--border-h); color: var(--text); }
 
 /* ─── PROJECTS ──────────────────────────────────────────────── */
 .projects-grid {
@@ -108,7 +110,9 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
+  transition: background .2s;
 }
+.project-card:hover { background: var(--surface-h); }
 
 .project-top {
   display: flex;

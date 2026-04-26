@@ -2,8 +2,8 @@
 .section-hero {
   min-height: 100vh;
   display: flex;
-  align-items: flex-end;
-  padding: calc(var(--nav-h) + 40px) 0 80px;
+  align-items: center;          /* centrado vertical, sin espacio vacío */
+  padding: calc(var(--nav-h) + 48px) 0 80px;
 }
 
 .hero-inner {
@@ -13,6 +13,7 @@
   width: 100%;
 }
 
+/* Entrada sutil — CSS puro, sin JS */
 .hero-label {
   display: block;
   font-size: .82rem;
@@ -20,6 +21,7 @@
   color: var(--muted);
   letter-spacing: .03em;
   margin-bottom: 24px;
+  animation: heroFade .6s ease both;
 }
 
 .hero-name {
@@ -28,6 +30,7 @@
   line-height: 1.02;
   letter-spacing: -.03em;
   margin-bottom: 28px;
+  animation: heroSlide .7s .1s ease both;
 }
 
 .hero-desc {
@@ -36,10 +39,23 @@
   max-width: 50ch;
   margin-bottom: 36px;
   line-height: 1.75;
+  animation: heroFade .7s .2s ease both;
 }
 
 .hero-actions {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  animation: heroFade .7s .32s ease both;
+}
+
+/* ─── KEYFRAMES ─────────────────────────────────────────────── */
+@keyframes heroSlide {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }

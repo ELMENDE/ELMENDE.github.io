@@ -14,15 +14,17 @@
 */
 
 :root {
-  --bg:      #0B0B0B;
-  --surface: #111111;
-  --text:    #EDECEA;
-  --muted:   #6A6A6A;
-  --border:  #1E1E1E;
-  --accent:  #CBFF47;
-  --radius:  6px;
-  --nav-h:   60px;
-  --max-w:   1080px;
+  --bg:         #0D1117;   /* dark navy, no puro negro */
+  --surface:    #161B22;   /* cards y superficies */
+  --surface-h:  #1C2128;   /* hover de cards */
+  --text:       #E6EDF3;   /* blanco con leve tono frío */
+  --muted:      #7D8590;   /* gris medio con tinte azul */
+  --border:     #30363D;   /* borde visible pero suave */
+  --border-h:   #484F58;   /* borde en hover */
+  --accent:     #CBFF47;
+  --radius:     6px;
+  --nav-h:      60px;
+  --max-w:      1080px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -47,4 +49,5 @@ img { display: block; max-width: 100%; }
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb { background: var(--border-h); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
