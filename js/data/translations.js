@@ -15,7 +15,7 @@ export const T = {
 
     /* About */
     'about.title':    'Sobre mí',
-    'about.bio1':     'En Asignet automatizo procesos que antes se hacían a mano. Concretamente: acceder a portales de proveedores de empresas como Nike, Microsoft o Meta, extraer información de forma periódica, correr verificaciones — todo eso pasa a funcionar solo, sin que nadie tenga que encargarse. Cuando algo falla, lo diagnostico y lo corrijo.',
+    'about.bio1':     'En Asignet construyo automatizaciones para procesos que tienen que ocurrir sin intervención humana. El sistema entra a portales de proveedores de empresas como Nike, Microsoft o Meta, extrae la información necesaria y la procesa de forma automática en un schedule regular — sin que nadie tenga que encargarse. Cuando algo falla, lo diagnostico y lo corrijo.',
     'about.bio2':     'Curso Analista en Tecnologías de la Información en Universidad ORT Uruguay desde 2023. Fuera del trabajo: volleyball, bicicleta, fútbol, algo de rock.',
     'about.k_loc':    'Ubicación',
     'about.v_loc':    'Montevideo, Uruguay',
@@ -83,7 +83,7 @@ export const T = {
 
     /* About */
     'about.title':    'About',
-    'about.bio1':     'At Asignet, I automate processes that used to be done by hand. Specifically: accessing supplier portals for companies like Nike, Microsoft, and Meta, retrieving information on a regular schedule, running verifications — all of that runs on its own, with no one having to touch it. When something breaks, I diagnose and fix it.',
+    'about.bio1':     'At Asignet, I build automations for processes that need to run without human intervention. The system logs into supplier portals for companies like Nike, Microsoft, and Meta, retrieves the necessary data, and processes it automatically on a regular schedule — no one has to handle it. When something breaks, I diagnose and fix it.',
     'about.bio2':     'I\'m studying Information Technology Analysis at Universidad ORT Uruguay (2023, in progress). Outside of work: volleyball, cycling, football, rock music.',
     'about.k_loc':    'Location',
     'about.v_loc':    'Montevideo, Uruguay',
