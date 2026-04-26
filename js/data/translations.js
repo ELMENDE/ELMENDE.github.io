@@ -15,7 +15,7 @@ export const T = {
 
     /* About */
     'about.title':    'Sobre mí',
-    'about.bio1':     'Escribo scripts que se conectan a los portales de clientes — Nike, Microsoft, Meta — y bajan las facturas del mes de forma automática. Cuando el pipeline falla o un portal cambia su estructura, lo resuelvo por ticketing. Cosas que antes alguien hacía a mano, ahora corren solas en un schedule.',
+    'about.bio1':     'En Asignet automatizo procesos que antes se hacían a mano. Concretamente: acceder a portales de proveedores de empresas como Nike, Microsoft o Meta, extraer información de forma periódica, correr verificaciones — todo eso pasa a funcionar solo, sin que nadie tenga que encargarse. Cuando algo falla, lo diagnostico y lo corrijo.',
     'about.bio2':     'Curso Analista en Tecnologías de la Información en Universidad ORT Uruguay desde 2023. Fuera del trabajo: volleyball, bicicleta, fútbol, algo de rock.',
     'about.k_loc':    'Ubicación',
     'about.v_loc':    'Montevideo, Uruguay',
@@ -83,7 +83,7 @@ export const T = {
 
     /* About */
     'about.title':    'About',
-    'about.bio1':     'I write scripts that log into client portals — Nike, Microsoft, Meta — and download that month\'s invoices automatically. When a pipeline fails or a portal changes its structure, I handle it through a ticketing system. Things that used to be done by hand now run on a schedule.',
+    'about.bio1':     'At Asignet, I automate processes that used to be done by hand. Specifically: accessing supplier portals for companies like Nike, Microsoft, and Meta, retrieving information on a regular schedule, running verifications — all of that runs on its own, with no one having to touch it. When something breaks, I diagnose and fix it.',
     'about.bio2':     'I\'m studying Information Technology Analysis at Universidad ORT Uruguay (2023, in progress). Outside of work: volleyball, cycling, football, rock music.',
     'about.k_loc':    'Location',
     'about.v_loc':    'Montevideo, Uruguay',
